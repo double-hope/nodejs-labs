@@ -21,3 +21,28 @@ function firstMissingPositive(nums: number[]): number {
     nums.forEach((elem) => elem === index ? index++ : null);
     return index;
 };
+
+
+// ----- 20. Valid Parentheses -----
+
+function isValid(s: string): boolean {
+    const parent = {
+        ')': '(',
+        '}': '{',
+        ']': '['
+    }
+    const stack = [];
+
+    for(let i = 0; i < s.length; i++){
+         if(parent[s[i]]) {
+            if(!stack || stack[stack.length - 1] !== parent[s[i]]) return false;
+            stack.pop();
+        } else {
+            stack.push(s[i]);
+        }
+    }
+    
+    return !stack.length;
+};
+
+console.log(isValid("()[]{}"));

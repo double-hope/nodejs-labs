@@ -25,8 +25,30 @@ function firstMissingPositive(nums) {
     nums.sort(function (a, b) { return a - b; });
     var index = 1;
     nums.forEach(function (elem) { return elem === index ? index++ : null; });
-    console.log(index);
-    return 0;
+    return index;
 }
 ;
-firstMissingPositive([7, 8, 9, 11, 12]);
+// ----- 20. Valid Parentheses -----
+function isValid(s) {
+    var parent = {
+        ')': '(',
+        '}': '{',
+        ']': '['
+    };
+    var stack = [];
+    for (var i = 0; i < s.length; i++) {
+        if (parent[s[i]]) {
+            if (!stack || stack[stack.length - 1] !== parent[s[i]])
+                return false;
+            stack.pop();
+        }
+        else {
+            stack.push(s[i]);
+        }
+    }
+    console.log(stack);
+    console.log(!stack.length);
+    return !stack;
+}
+;
+console.log(isValid("()[]{}"));
