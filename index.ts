@@ -1,21 +1,22 @@
 // ----- 4. Median of Two Sorted Arrays -----
 
-function findMedianSortedArrays(nums1: number[], nums2: number[]): number {
+const findMedianSortedArrays = (nums1: number[], nums2: number[]): number => {
     const merged = [...nums1, ...nums2];
     merged.sort((a, b) => a - b);
     
-    const index = Math.floor(merged.length / 2);
+    const index = Math.round(merged.length / 2);
 
     if(merged.length % 2 == 0) {
-        return (merged[index] + merged[index + 1]) / 2;
+        return (merged[index] + merged[index - 1]) / 2;
     } else {        
-        return merged[index];
+        return merged[index - 1];
     }
 };
 
+
 // ----- 41. First Missing Positive -----
 
-function firstMissingPositive(nums: number[]): number {
+const firstMissingPositive = (nums: number[]): number => {
     nums.sort((a, b) => a - b);
     let index = 1;
     nums.forEach((elem) => elem === index ? index++ : null);
@@ -25,7 +26,7 @@ function firstMissingPositive(nums: number[]): number {
 
 // ----- 20. Valid Parentheses -----
 
-function isValid(s: string): boolean {
+const isValid = (s: string): boolean => {
     const parent = {
         ')': '(',
         '}': '{',
@@ -45,4 +46,4 @@ function isValid(s: string): boolean {
     return !stack.length;
 };
 
-console.log(isValid("()[]{}"));
+export { findMedianSortedArrays, firstMissingPositive, isValid };
