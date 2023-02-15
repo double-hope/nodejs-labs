@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-labs",
+  "version": "1.0.0",
+  "description": "This repository consists of all lab works. To view a certain laboratory work, you need to go to the corresponding branch.",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/double-hope/nodejs-labs.git"
+  },
+  "author": "double_hope",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/double-hope/nodejs-labs/issues"
+  },
+  "homepage": "https://github.com/double-hope/nodejs-labs#readme",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
