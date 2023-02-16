@@ -1,12 +1,14 @@
 # nodejs-labs
 
-## 1st lab
+First lab
 
-Install dependencies
-`npm install`
+## Available Scripts
 
-Start code
-`npm run start`
+### `npm install`
+Installs dependencies
 
-Test code
-`npm run test`
+### `npm run start`
+Runs the code
+
+### `npm run test`
+Launches the test of code
