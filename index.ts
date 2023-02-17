@@ -1,9 +1,23 @@
-import { createServer, IncomingMessage, ServerResponse } from 'http';
- 
+import * as http from 'http';
+import request from 'request';
+import * as cheerio from 'cheerio';
+
+const page = 1;
+const url = `https://www.factcheck.org/page/${page}`
 const port = 3001;
  
-const server = createServer((request: IncomingMessage, response: ServerResponse) => {
+const server = http.createServer((request: http.IncomingMessage, response: http.ServerResponse) => {
   response.end('Hello world!');
 });
- 
+
+request(url, {json: true}, (err, res, body) => {
+  if (err) { return console.log(err); }
+  
+  const $ = cheerio.load(body);
+  console.log($);
+  
+
+
+});
+
 server.listen(port);
