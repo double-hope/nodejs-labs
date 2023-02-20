@@ -5,24 +5,28 @@ import * as cheerio from 'cheerio';
 const page = 1;
 const url = `https://www.factcheck.org/page/${page}`
 const port = 3001;
- 
+
 const server = http.createServer((request: http.IncomingMessage, response: http.ServerResponse) => {
-  response.end('Hello world!');
+    response.end('Hello world!');
 });
 
-request(url, {json: true}, (err, res, body) => {
-  if (err) { return console.log(err); }
-  
-  const $ = cheerio.load(body);
+setInterval(() => {
+    request(url, {json: true}, (err, res, body) => {
+        if (err) {
+            return console.log(err);
+        }
 
-  let links:string[] = [];
+        const $ = cheerio.load(body);
 
-  $('article a').each((i, el) => {
-    links.push($(el).attr("href"));
-  });
-  let unique = [... new Set(links)];
-  console.log(unique);
-  
-});
+        let links: string[] = [];
+
+        $('article a').each((i, el) => {
+            links.push($(el).attr("href"));
+        });
+        let unique = [...new Set(links)];
+        console.log(unique);
+
+    });
+}, 60000);
 
 server.listen(port);
