@@ -7,6 +7,8 @@ const page = 1;
 const url = `https://www.factcheck.org/page/${page}`
 const port = 3001;
 
+let links: string[] = [];
+
 const server = http.createServer((request: http.IncomingMessage, response: http.ServerResponse) => {
     response.end('Hello world!');
 });
@@ -19,33 +21,28 @@ const server = http.createServer((request: http.IncomingMessage, response: http.
 
         const $ = cheerio.load(body);
 
-        let links: string[] = [];
-
         $('article a').each((i, el) => {
-            links.push($(el).attr("href"));
+            links.push($(el).attr('href'));
         });
-        let unique = [...new Set(links)];
+        links = [...new Set(links)];
 
-        for(let i in unique){
-            request(unique[i],{json:true}, (err, res, body)=>{
+        links.forEach((link, i) => {
+            request(link, {json:true}, (err, res, body)=>{
                 if(err)
                     return console.log(err);
 
                 const $ = cheerio.load(body);
-                const article = $("*").html();
+                const article = $('*').html();
 
-                fs.mkdir("./news/news№"+i, {recursive: true} ,(err)=>{
+                fs.mkdir(`./news/news№${i}`, {recursive: true} ,(err)=>{
                     if(err) console.log(err);
                 });
 
                 fs.writeFile(`./news/news№${i}/index.html`, article, function (err){
                     if(err) console.log(err);
-
                 })
             });
-
-
-        }
+        })
 
     });
 //}, 10);
