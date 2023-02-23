@@ -10,20 +10,23 @@ const port = 3001;
 let links: string[] = [];
 
 const server = http.createServer((request: http.IncomingMessage, response: http.ServerResponse) => {
-    response.end('Hello world!');
+    response.setHeader('Content-Type', 'text/html');
+    response.write('<h1>fhrjfk</h1>');
+    
+    response.end();
 });
 
 //setInterval(() => {
     request(url, {json: true}, (err, res, body) => {
-        if (err) {
+        if (err) 
             return console.log(err);
-        }
 
         const $ = cheerio.load(body);
 
         $('article a').each((i, el) => {
             links.push($(el).attr('href'));
         });
+
         links = [...new Set(links)];
 
         links.forEach((link, i) => {
@@ -32,13 +35,23 @@ const server = http.createServer((request: http.IncomingMessage, response: http.
                     return console.log(err);
 
                 const $ = cheerio.load(body);
-                const article = $('*').html();
+                const name = $('.entry-title').text();
+                let text = '';
 
+                $('.entry-content p').each((i, el) => {
+                    text += $(el).text();
+                });
+
+                const article = {
+                    name,
+                    text,
+                }
+                
                 fs.mkdir(`./news/news№${i}`, {recursive: true} ,(err)=>{
                     if(err) console.log(err);
                 });
 
-                fs.writeFile(`./news/news№${i}/index.html`, article, function (err){
+                fs.writeFile(`./news/news№${i}/${article.name}.json`, JSON.stringify(article), function (err){
                     if(err) console.log(err);
                 })
             });
