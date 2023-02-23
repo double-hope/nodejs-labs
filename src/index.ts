@@ -6,18 +6,13 @@ const page = 1;
 const url = `https://www.factcheck.org/page/${page}`
 const port = 3001;
 
-let links: string[] = [];
-
 const server = http.createServer((request: http.IncomingMessage, response: http.ServerResponse) => {
     response.setHeader('Content-Type', 'text/html');
     response.write('<h1></h1>');
-
-     requestHandler().then(res => console.log(res));
+    
+    requestHandler().then(res => console.log(res)).catch(err => console.log(err));
     
     response.end();
 });
-
-
-
 
 server.listen(port);

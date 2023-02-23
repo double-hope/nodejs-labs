@@ -11,8 +11,8 @@
     "request": "^2.88.2"
   },
   "scripts": {
-    "start": "nodemon --exec node --loader ts-node/esm index.ts",
-    "build": "tsc --project tsconfig.json",
+    "start": "tsc && nodemon ./dist/index.js && tsc -w",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,8 +20,6 @@
     "url": "git+https://github.com/double-hope/nodejs-labs.git"
   },
   "author": "double_hope",
-  "type": "module",
-  "exports": "./dist/index.js",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/double-hope/nodejs-labs/issues"
@@ -35,6 +33,9 @@
     "typescript": "^4.9.5"
   },
   "nodemonConfig": {
-    "ignore": ["*.json", "news"]
+    "ignore": [
+      "*.json",
+      "news"
+    ]
   }
 }
