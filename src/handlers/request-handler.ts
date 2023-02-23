@@ -7,8 +7,8 @@ const url = `https://www.factcheck.org/page/${page}`
 
 let links: any[] = [];
 
-const requestHandler =()=>{
-  return new Promise((resolve, reject)=>{
+const requestHandler = () => {
+  return new Promise((resolve, reject) => {
       request(url, {json: true}, (err, res, body) => {
           if (err)
               return console.log(err);

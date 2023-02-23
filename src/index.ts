@@ -1,6 +1,6 @@
 import * as http from 'http';
 import * as fs from 'fs';
-import {requestHandler} from "./handlers/request-handler";
+import { requestHandler } from './handlers/request-handler';
 
 const page = 1;
 const url = `https://www.factcheck.org/page/${page}`
