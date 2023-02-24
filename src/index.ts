@@ -1,34 +1,29 @@
 import * as http from 'http';
-import * as fs from 'fs';
 import { requestHandler } from './handlers/request-handler';
 import { readHandler } from './handlers/read-handler';
 import path from 'path';
+import { newsDTO } from './common/dto/newsDto';
 
-const page = 1;
-const url = `https://www.factcheck.org/page/${page}`
 const port = 3001;
-
-let n : number;
-const fileNames : string[] = [];
+const news : newsDTO[] = [];
 
 const basePath = path.resolve();
 
 const server = http.createServer(async (request: http.IncomingMessage, response: http.ServerResponse) => {
     response.setHeader('Content-Type', 'text/html');
     response.write('<h1>dd</h1>');
-    
-
-
+ 
     requestHandler().then(res => {
-        readHandler(basePath).then(res=>{
-            console.log(res)
+        readHandler(basePath).then(async res => {
+            res.forEach(data => news.push(JSON.parse(data)));
         });
     }).catch(err => console.log(err));
-    
-    await console.log(fileNames);
 
-    if(!!fileNames)
-        response.write(`${fileNames.map(i => i)}`);
+    (await function() {
+        news.map(data => {
+            response.write(`<h3>${data.name}</h3>`)
+        })
+    }) ()
 
     response.end();
 });
