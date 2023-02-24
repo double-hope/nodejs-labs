@@ -1,16 +1,23 @@
 import fs from 'fs';
 
-const readHandler = (path: string) => {
+let arr:string[] = [];
+const promises:any[] = [];
+
+const readHandler = (basePath: string) => {
     return new Promise((resolve, reject) => {
-        fs.readdir('./news', (err, files) => {
-            if (err) return;
-            files.map(async file => {
-                await fs.readdir(`./news/${file}`, async (err, file) => {
-                    if (err) console.log(err);
-                    
-                    // hhhhh
-                });
-            });
+        const length = fs.readdirSync(`${basePath}/news`).length;
+
+        for(let i=0; i<length; i++){
+            arr.push(fs.readdirSync(`${basePath}/news/news№${i}`)+"");
+
+            promises.push(new Promise((resolve, reject)=>{
+                const file = fs.readFileSync(`${basePath}/news/news№${i}/${arr[i]}`, "utf8");
+                !!file ? resolve(file): reject("Error");
+            }));
+
+        }
+        Promise.all(promises).then((res)=>{
+            resolve(res);
         });
     });
 }

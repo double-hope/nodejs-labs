@@ -17,10 +17,12 @@ const server = http.createServer(async (request: http.IncomingMessage, response:
     response.setHeader('Content-Type', 'text/html');
     response.write('<h1>dd</h1>');
     
-    readHandler(basePath);
+
 
     requestHandler().then(res => {
-        
+        readHandler(basePath).then(res=>{
+            console.log(res)
+        });
     }).catch(err => console.log(err));
     
     await console.log(fileNames);
