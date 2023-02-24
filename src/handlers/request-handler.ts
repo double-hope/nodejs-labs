@@ -22,7 +22,7 @@ const requestHandler = () => {
           links = [...new Set(links)];
 
           links.forEach((link, i) => {
-              request(link, {json:true}, (err, res, body)=>{
+              request(link, {json:true}, (err, res, body) => {
                   if(err)
                       return console.log(err);
 
@@ -38,6 +38,11 @@ const requestHandler = () => {
                       name,
                       text,
                   }
+
+                  // ХЕРНЯ, ПЕРЕРОБИТИ!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+                  // if(fs.existsSync('./news')) fs.rmSync('./news', { recursive: true, force: true });
 
                   fs.mkdir(`./news/news№${i}`, {recursive: true} ,(err)=>{
                       if(err)
