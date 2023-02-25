@@ -12,25 +12,24 @@ const basePath = path.resolve();
 const server = http.createServer(async (request: http.IncomingMessage, response: http.ServerResponse) => {
     response.setHeader('Content-Type', 'text/html');
  
-    requestHandler().then(res => {
+    requestHandler().then(res => {        
         readHandler(basePath).then(async res => {
             res.forEach(data => news.push(JSON.parse(data)));
-        });
+        })
+        .catch(err => console.log(err));
     }).catch(err => console.log(err));
 
-
-    // don't ask!
-    response.write("<script>\n" +
-        "    function changeVisibility(i){\n" +
-        "        const text = document.getElementById(`text${i}`);\n" +
-        "        if(text.style.display ===\"none\")\n" +
-        "            text.style.display = \"block\";\n" +
-        "        else if(text.style.display === \"block\")\n" +
-        "            text.style.display = \"none\";\n" +
-        "\n" +
-        "\n" +
-        "    }\n" +
-        "</script>");
+    response.write(`
+        <script>
+            const changeVisibility = (i) => {
+                const text = document.getElementById(` + '`text${i}`' +`); 
+                if(text?.style.display ==="none")
+                    text.style.display = "block";
+                else if(text?.style.display === "block")
+                    text.style.display = "none";
+            }
+        </script>
+    `);
 
     (await function() {
         news.map((data, key) => {
