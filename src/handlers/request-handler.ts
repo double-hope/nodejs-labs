@@ -40,15 +40,15 @@ const requestHandler = () => {
                     }
 
                     try {
-                        fs.writeFileSync(`./news/news№${key}/${article.name}.json`, JSON.stringify(article));
+                        fs.mkdirSync(`./news/news№${key}`, {recursive: true});
                     } catch(err) {
-                        reject(err);
+                        reject("Error: creating dirs");
                     }
 
                     try {
-                        fs.mkdirSync(`./news/news№${key}`, {recursive: true});
+                        fs.writeFileSync(`./news/news№${key}/${article.name}.json`, JSON.stringify(article));
                     } catch(err) {
-                        reject(err);
+                        reject("Error: writing news");
                     }
                     
                     resolve('File saved correctly');
