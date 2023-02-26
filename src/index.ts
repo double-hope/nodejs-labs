@@ -3,16 +3,24 @@ import { requestHandler } from './handlers/request-handler';
 import { readHandler } from './handlers/read-handler';
 import path from 'path';
 import { newsDTO } from './common/dto/newsDto';
+import fs from "fs";
 
 const port = 3001;
 let news : newsDTO[] = [];
 
 const basePath = path.resolve();
 
+try{
+    fs.rmSync('./news', { recursive: true })
+}
+catch(err){
+    console.log("Error: can't delete folders");
+}
+
 setInterval(()=>{
     console.log("Update " + new Date());
 
-    requestHandler().then(res => {
+    requestHandler().then(async res => {
         readHandler(basePath).then(res => {
             news = [];
             res.forEach(data => news.push(JSON.parse(data)));

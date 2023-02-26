@@ -1,5 +1,4 @@
 import fs from 'fs';
-import {log} from "util";
 
 type Unpromise<T> = T extends Promise<infer U> ? U : never;
 
@@ -11,10 +10,10 @@ const readHandler = (basePath: string) : Unpromise<Promise<Promise<string[]>>> =
 
         try{
             fs.readdirSync(`${basePath}/news`).forEach((elem, key) => {
-                news.push(fs.readdirSync(`${basePath}/news/news№${key}`).toString());
+                news.push(fs.readdirSync(`${basePath}/news/news№${key+1}`).toString());
 
                 promises.push(new Promise((resolve, reject) => {
-                    const file = fs.readFileSync(`${basePath}/news/news№${key}/${news[key]}`, 'utf8');
+                    const file = fs.readFileSync(`${basePath}/news/news№${key+1}/${news[key]}`, 'utf8');
                     !!file ? resolve(file): reject('Error while reading file');
                 }));
             });
