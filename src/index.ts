@@ -10,17 +10,13 @@ let news : newsDTO[] = [];
 const basePath = path.resolve();
 
 setInterval(()=>{
-    console.log("Update " + new Date());
-
     requestHandler().then(res => {
         readHandler(basePath).then(res => {
             news = [];
             res.forEach(data => news.push(JSON.parse(data)));
         }).catch(err => console.log(err));
     }).catch(err => console.log(err));
-}, 4000);
-
-
+}, 60000);
 
 const server = http.createServer((resquest, response) => {
     response.setHeader('Content-Type', 'text/html');
