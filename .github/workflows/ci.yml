@@ -48,7 +48,7 @@ jobs:
           aws_secret_key: ${{secrets.SECRET_ACCESS_KEY}}
           application_name: express-lab-3
           environment_name: Expresslab3-env
-          existing_bucket_name: elasticbeanstalk-us-east-1-669912037474
+          existing_bucket_name: elasticbeanstalk-eu-north-1-669912037474
           region: eu-north-1
           version_label: "version-label-${{ github.sha }}"
           deployment_package: backend/deploy.zip
