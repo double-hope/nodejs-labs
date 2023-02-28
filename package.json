@@ -1,0 +1,29 @@
+{
+  "name": "nodejs-labs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:backend": "cd backend && npm run start",
+    "start:frontend": "cd frontend && npm run start",
+    "start:all": "concurrently -k -p \"{name}\" -n \"BACKEND,FRONTEND\" -c \"green,blue\" \"npm:start:backend\" \"npm:start:frontend\"",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build:all": "concurrently -k -p \"{name}\" -n \"BACKEND,FRONTEND\" -c \"green,blue\" \"npm:build:backend\" \"npm:build:frontend\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/double-hope/nodejs-labs.git"
+  },
+  "keywords": [],
+  "author": "double_hope",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/double-hope/nodejs-labs/issues"
+  },
+  "homepage": "https://github.com/double-hope/nodejs-labs#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
