@@ -2,6 +2,7 @@ name: Build and deploy
 
 on:
   push:
+    branches: ['lab-3-react']
   pull_request:
     branches: ['main']
 
