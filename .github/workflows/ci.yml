@@ -28,3 +28,26 @@ jobs:
       - name: Build the application
         run: npm run build:all
 
+      - name: Set AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-north-1
+
+      - name: Deploy to AWS S3
+        run: aws s3 sync ./frontend/build/. s3://nodejs-react-lab-3
+
+      - name: Generate deployment package
+        run: cd backend && zip -r deploy.zip * .[^.]* -x "node_modules" "src"
+
+      - name: Beanstalk Deploy for app
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{secrets.ACCESS_KEY_ID}}
+          aws_secret_key: ${{secrets.SECRET_ACCESS_KEY}}
+          application_name: express-lab-3
+          environment_name: Expresslab3-env
+          region: eu-north-1
+          version_label: "version-label-${{ github.sha }}"
+          deployment_package: backend/deploy.zip
