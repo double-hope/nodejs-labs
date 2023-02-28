@@ -1,10 +1,10 @@
-name: Build and deploy
+name: Build
 
 on:
   push:
     branches: ['lab-3-react']
   pull_request:
-    branches: ['main']
+    branches: ['lab-3-react']
 
 jobs:
   build:
