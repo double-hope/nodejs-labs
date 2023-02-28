@@ -25,5 +25,5 @@ jobs:
         run: npm run install:all
 
       - name: Build the application
-        run: npm run build 
+        run: npm run build:all
 
