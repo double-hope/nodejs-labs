@@ -9,14 +9,17 @@ let news : newsDTO[] = [];
 
 const basePath = path.resolve();
 
-setInterval(()=>{
+
+const makeRequest = () => {
     requestHandler().then(res => {
         readHandler(basePath).then(res => {
             news = [];
             res.forEach(data => news.push(JSON.parse(data)));
         }).catch(err => console.log(err));
     }).catch(err => console.log(err));
-}, 60000);
+
+    setTimeout(makeRequest, 60000);
+};
 
 const server = http.createServer((resquest, response) => {
     response.setHeader('Content-Type', 'text/html');
@@ -38,8 +41,8 @@ const server = http.createServer((resquest, response) => {
         response.write(`<p id="text${key}" style="display: none">${data.text}</p>`)
     })
 
-
     response.end();
 });
 
+makeRequest();
 server.listen(port);
