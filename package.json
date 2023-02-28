@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:backend": "cd backend && npm run start",
+    "start:backend": "cd backend && npm run dev",
     "start:frontend": "cd frontend && npm run start",
     "start:all": "concurrently -k -p \"{name}\" -n \"BACKEND,FRONTEND\" -c \"green,blue\" \"npm:start:backend\" \"npm:start:frontend\"",
     "build:backend": "cd backend && npm run build",
     "build:frontend": "cd frontend && npm run build",
     "build:all": "concurrently -k -p \"{name}\" -n \"BACKEND,FRONTEND\" -c \"green,blue\" \"npm:build:backend\" \"npm:build:frontend\"",
+    "install:backend": "cd backend && npm i",
+    "install:frontend": "cd frontend && npm i",
+    "install:all": "npm i && npm run install:backend && npm run install:frontend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
