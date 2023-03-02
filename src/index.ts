@@ -3,8 +3,11 @@ import { requestHandler } from './handlers/request-handler';
 import { readHandler } from './handlers/read-handler';
 import path from 'path';
 import { newsDTO } from './common/dto/newsDto';
+import dotenv from 'dotenv';
 
-const port = 3001;
+dotenv.config();
+
+const port = process.env.PORT;
 let news : newsDTO[] = [];
 
 const basePath = path.resolve();
