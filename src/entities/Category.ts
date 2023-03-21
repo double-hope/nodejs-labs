@@ -1,8 +1,13 @@
+import type { CategoryDto, GoodsDto } from '../dto';
+
 class Category {
     private name : string;
-    // private goods : Goods;
+    private goods : GoodsDto[];
 
-    constructor(name: string) {
-        this.name = name;
+    constructor(category: CategoryDto) {
+        this.name = category.name;
+        this.goods = category.goods;
     }
 }
+
+export { Category };

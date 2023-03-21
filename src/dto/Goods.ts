@@ -1,4 +1,4 @@
-export interface  GoodsDTO {
+export interface  GoodsDto {
     name:string;
     price:number;
     description:string;

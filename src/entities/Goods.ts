@@ -1,11 +1,12 @@
-import type {GoodsDTO} from "../dto/Goods";
+import type { GoodsDto } from "../dto/Goods";
+
 class Goods {
     private name:string;
     private price:number;
     private description:string;
     // TODO characteristics, reviews
 
-    constructor(goods:GoodsDTO) {
+    constructor(goods:GoodsDto) {
         this.name = goods.name;
         this.price = goods.price;
         this.description = goods.description;
@@ -19,3 +20,5 @@ class Goods {
         this.name = name;
     }
 }
+
+export { Goods };
