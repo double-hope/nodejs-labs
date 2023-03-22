@@ -4,7 +4,7 @@ class Category {
     private name : string;
     private goods : GoodsDto[];
 
-    constructor(category: CategoryDto) {
+    constructor(category : CategoryDto) {
         this.name = category.name;
         this.goods = category.goods;
     }
