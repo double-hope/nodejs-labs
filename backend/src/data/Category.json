@@ -1,0 +1,13 @@
+[
+    {
+        "id": "1",
+        "name": "komps",
+        "goods": [
+            {
+                "name": "komp1",
+                "price": 500,
+                "description": "nicec komp"
+            }
+        ]
+    }
+]

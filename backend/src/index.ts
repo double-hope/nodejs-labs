@@ -1,9 +1,10 @@
-import express, { Express, NextFunction, Request, Response } from 'express';
+import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
-import { errorHandler } from './middleware';
-import { router } from './routes';
+import { errorHandler } from './middlewares';
+import { root } from './routes';
+import { goods } from './routes/api';
 
 dotenv.config();
 
@@ -26,7 +27,8 @@ const corsOptions: cors.CorsOptions = {
 app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.use(router);
+app.use('/', root);
+app.use('/goods', goods);
 
 app.use(errorHandler);
 

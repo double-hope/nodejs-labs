@@ -1,1 +1,1 @@
-export* from './router';
+export { router as root }  from './root';
