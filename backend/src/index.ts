@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
 import { errorHandler } from './middleware';
+import { router } from './routes';
 
 dotenv.config();
 
@@ -25,9 +26,7 @@ const corsOptions: cors.CorsOptions = {
 app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
+app.use(router);
 
 app.use(errorHandler);
 
