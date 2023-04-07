@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import {Router, Request, Response} from 'express';
 import goods from '../../data/Goods.json';
 import { GoodsApiDto } from '../../dto';
 
@@ -9,31 +9,29 @@ const data: GoodsApiDto = {
 }
 
 router.route('/')
-    .get((req, res) => {
+    .get((req: Request, res: Response) => {
         res.json(data.goods);
     })
-    .post((req, res) => {
-        console.log(req.body);
-        
+    .post((req: Request, res: Response) => {
         res.json({
             "name": req.body.name,
             "price": req.body.price,
             "description": req.body.description
         });
     })
-    .put((req, res) => {
+    .put((req: Request, res: Response) => {
         res.json({
             "name": req.body.name,
             "price": req.body.price,
             "description": req.body.description
         });
     })
-    .delete((req, res) => {
+    .delete((req: Request, res: Response) => {
         res.json({ "id": req.body.id });
     });
 
 router.route('/:id')
-    .get((req, res) => {
+    .get((req: Request, res: Response) => {
         res.json({ "id": req.body.id })
 })
 
