@@ -4,7 +4,7 @@ import { CategoryApiDto } from '../../dto';
 
 const router = Router();
 
-const data: CategoryApiDto = {
-    category
-};
+// const data: CategoryApiDto = {
+//     category
+// };
 

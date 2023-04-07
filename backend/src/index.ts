@@ -5,24 +5,12 @@ import cors from 'cors';
 import { errorHandler } from './middlewares';
 import { root } from './routes';
 import { goods } from './routes/api';
+import { corsOptions } from './config';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3001;
-
-const whitelist = ['http://127.0.0.1:3000', 'http://127.0.0.1:3001'];
-const corsOptions: cors.CorsOptions = {
-  methods: 'GET, HEAD, OPTIONS, PUT, PATCH, POST, DELETE',
-  origin: (origin, callback) => {
-    if(!origin || whitelist.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  },
-  optionsSuccessStatus: 200
-}
 
 app.use(cors(corsOptions));
 app.use(express.json());
