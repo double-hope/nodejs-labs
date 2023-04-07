@@ -4,7 +4,7 @@ import path from 'path';
 import cors from 'cors';
 import { errorHandler } from './middlewares';
 import { root } from './routes';
-import { goods } from './routes/api';
+import { categories, goods } from './routes/api';
 import { corsOptions } from './config';
 
 dotenv.config();
@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/', root);
 app.use('/goods', goods);
+app.use('/categories', categories);
 
 app.use(errorHandler);
 
