@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
 import { errorHandler } from './middlewares';
-import { root } from './routes';
+import { register, root } from './routes';
 import { categories, goods } from './routes/api';
 import { corsOptions } from './config';
 
@@ -20,6 +20,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use('/', root);
 app.use('/goods', goods);
 app.use('/categories', categories);
+app.use('/register', register);
 
 app.use(errorHandler);
 
