@@ -25,9 +25,9 @@ class Register {
         
         if(!name || !email || !password) 
             return res.status(400).json({'message': 'Name, email and password are required'});
-
+        
         const dublicate = this.usersDB.users.find(user => user.email === email);
-        if(dublicate) return res.status(409);
+        if(dublicate) return res.status(409).json({'message': `User with email ${email} already exists`});
 
         try{
             const hashedPassword = await bcrypt.hash(password, 10);
