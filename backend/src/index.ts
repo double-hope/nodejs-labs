@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
 import { errorHandler } from './middlewares';
-import { register, root } from './routes';
+import { auth, register, root } from './routes';
 import { categories, goods } from './routes/api';
 import { corsOptions } from './config';
 
@@ -21,6 +21,7 @@ app.use('/', root);
 app.use('/goods', goods);
 app.use('/categories', categories);
 app.use('/register', register);
+app.use('/auth', auth);
 
 app.use(errorHandler);
 
