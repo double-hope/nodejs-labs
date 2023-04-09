@@ -1,74 +1,50 @@
 import { Request, Response } from 'express';
-import { GoodsApiDto, GoodsDto } from '../dto';
-import goods from '../model/Goods.json';
+import { UserDto } from '../dto';
+import users from '../model/Users.json';
+import { UsersApiDto } from '../dto/api/Users';
+import fs from 'fs';
+import bcrypt from 'bcrypt';
 import { randomUUID } from 'crypto';
+import path from 'path';
 
-class Goods {
-    private data: GoodsApiDto;
+class Register {
+    private usersDB: UsersApiDto;
+    private fsPromises: typeof fs.promises;
 
     constructor() {
-        this.data  = {
-            goods,
-            setGoods: (data: GoodsDto[]) => { this.data.goods = data }
+        this.usersDB  = {
+            users,
+            setUsers: (data: UserDto[]) => { this.usersDB.users = data }
+        }
+
+        this.fsPromises = fs.promises;
+    }
+
+    async _createNewUser(req: Request, res: Response) {
+        const { name, email, password } = req.body;
+        
+        if(!name || !email || !password) 
+            return res.status(400).json({'message': 'Name, email and password are required'});
+
+        const dublicate = this.usersDB.users.find(user => user.email === email);
+        if(dublicate) return res.status(409);
+
+        try{
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const newUser = {id: randomUUID(), name, email, password: hashedPassword};
+            this.usersDB.setUsers([...this.usersDB.users, newUser]);
+            await this.fsPromises.writeFile(
+                path.join(__dirname, '..', 'model', 'Users.json'),
+                JSON.stringify(this.usersDB.users)
+            )
+            res.status(201).json({'success': `New user ${name} was created`});
+        } catch(err){
+            const typedError = err as Error;
+            res.status(500).json({'message': typedError.message});
         }
     }
 
-    public _getAllGoods(req: Request, res: Response) {
-        res.json(this.data);
-    }
-    
-    public _getGood(req: Request, res: Response) {
-        const good = this.data.goods.find(good => good.id === req.body.id);
-        
-        if(!good)
-            return res.status(400).json({'message': `ID ${req.body.id} was not found`});
-            
-        res.json(good);
-    }
 
-    public _createNewGood(req: Request, res: Response) {
-        const newGood = {
-            id: randomUUID(),
-            name: req.body.name,
-            price: req.body.price,
-            description: req.body.description
-        }
-
-        if(!newGood.name || !newGood.price || !newGood.description)
-            return res.status(400).json({'message': 'Name, price and description are required'});
-
-        this.data.setGoods([...this.data.goods, newGood]);
-        
-        res.status(201).json(this.data.goods);
-    }
-
-    public _updateGood(req: Request, res: Response) {
-        const good = this.data.goods.find(good => good.id === req.body.id);
-
-        if(!good)
-            return res.status(400).json({'message': `ID ${req.body.id} was not found`});
-        
-        if(req.body.name) good.name = req.body.name;
-        if(req.body.price) good.price = req.body.price;
-        if(req.body.description) good.description = req.body.description;
-
-        const filteredData = this.data.goods.filter(good => good.id !== req.body.id);
-        this.data.setGoods([...filteredData, good]);
-
-        res.json(this.data.goods);
-    }
-
-    public _deleteGood(req: Request, res: Response) {
-        const good = this.data.goods.find(good => good.id === req.body.id);
-        
-        if(!good)
-            return res.status(400).json({'message': `ID ${req.body.id} was not found`});
-        
-        const filteredData = this.data.goods.filter(good => good.id !== req.body.id);
-        this.data.setGoods([...filteredData]);
-
-        res.json(this.data.goods);
-    }
 }
 
-export { Goods };
+export { Register };
