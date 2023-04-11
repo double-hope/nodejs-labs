@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
 import { errorHandler } from './middlewares';
-import { auth, refresh, register, root } from './routes';
+import { auth, logout, refresh, register, root } from './routes';
 import { categories, goods } from './routes/api';
 import { corsOptions } from './config';
 import { verifyJWT } from './middlewares/verifyJWT';
@@ -24,6 +24,7 @@ app.use('/', root);
 app.use('/register', register);
 app.use('/auth', auth);
 app.use('/refresh', refresh);
+app.use('/logout', logout);
 
 app.use(verifyJWT);
 app.use('/goods', goods);
