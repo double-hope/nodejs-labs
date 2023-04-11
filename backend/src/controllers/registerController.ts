@@ -31,7 +31,7 @@ class Register {
 
         try{
             const hashedPassword = await bcrypt.hash(password, 10);
-            const newUser = {id: randomUUID(), name, email, password: hashedPassword};
+            const newUser = {id: randomUUID(), name, email, password: hashedPassword, refreshToken: null};
             this.usersDB.setUsers([...this.usersDB.users, newUser]);
             await this.fsPromises.writeFile(
                 path.join(__dirname, '..', 'model', 'Users.json'),

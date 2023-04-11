@@ -3,9 +3,11 @@ import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
 import { errorHandler } from './middlewares';
-import { auth, register, root } from './routes';
+import { auth, refresh, register, root } from './routes';
 import { categories, goods } from './routes/api';
 import { corsOptions } from './config';
+import { verifyJWT } from './middlewares/verifyJWT';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
@@ -14,14 +16,18 @@ const port = process.env.PORT || 3001;
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/', root);
-app.use('/goods', goods);
-app.use('/categories', categories);
 app.use('/register', register);
 app.use('/auth', auth);
+app.use('/refresh', refresh);
+
+app.use(verifyJWT);
+app.use('/goods', goods);
+app.use('/categories', categories);
 
 app.use(errorHandler);
 
