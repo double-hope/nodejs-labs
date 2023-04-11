@@ -2,11 +2,10 @@ import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
-import { errorHandler } from './middlewares';
+import { errorHandler, verifyJWT, credentials } from './middlewares';
 import { auth, logout, refresh, register, root } from './routes';
 import { categories, goods } from './routes/api';
 import { corsOptions } from './config';
-import { verifyJWT } from './middlewares/verifyJWT';
 import cookieParser from 'cookie-parser';
 
 dotenv.config();
@@ -14,6 +13,7 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3001;
 
+app.use(credentials);
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
