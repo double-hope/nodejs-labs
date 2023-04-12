@@ -45,7 +45,7 @@ class Refresh {
                         }
                     },
                     process.env.ACCESS_TOKEN_SECRET as string,
-                    { expiresIn: '30s' }
+                    { expiresIn: '15m' }
                 );
                 res.json({ accessToken });
             }

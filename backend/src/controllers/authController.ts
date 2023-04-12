@@ -42,7 +42,7 @@ class Auth {
                     }
                 },
                 process.env.ACCESS_TOKEN_SECRET as string,
-                { expiresIn: '30s' }
+                { expiresIn: '15m' }
             );
             const refreshToken = jwt.sign(
                 { 'email': foundUser.email },
