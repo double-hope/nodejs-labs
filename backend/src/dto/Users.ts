@@ -3,5 +3,6 @@ export interface UserDto {
     name : string;
     email : string;
     password : string;
+    roles: string[];
     refreshToken: string | null;
 }

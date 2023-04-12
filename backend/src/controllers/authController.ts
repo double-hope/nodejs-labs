@@ -33,8 +33,14 @@ class Auth {
 
         const match = await bcrypt.compare(password, foundUser.password);
         if(match) {
+            const roles = foundUser.roles;
             const accessToken = jwt.sign(
-                { 'email': foundUser.email },
+                { 
+                    'UserInfo': {
+                        'email': foundUser.email,
+                        roles
+                    }
+                },
                 process.env.ACCESS_TOKEN_SECRET as string,
                 { expiresIn: '30s' }
             );

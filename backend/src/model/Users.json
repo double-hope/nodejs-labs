@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "id": "1",
+        "name": "test",
+        "email": "test@gmail.com",
+        "password": "$2b$10$Cvvp8eBEXpfphoeepjqthe0Iz/ykiGWBo6OXVuvZ9UGZHp8yDUbUq",
+        "roles": ["ADMIN", "EDITOR", "USER"],
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjgxMjk0NDcxLCJleHAiOjE2ODEzODA4NzF9.pliHEkZeN7M1uvIkcqjxBuBWE_Pxy4t8V5mH4OTFXY4"
+    },
+    {
+        "id": "2",
+        "name": "test2",
+        "email": "test2@gmail.com",
+        "password": "$2b$10$Cvvp8eBEXpfphoeepjqthe0Iz/ykiGWBo6OXVuvZ9UGZHp8yDUbUq",
+        "roles": ["EDITOR", "USER"],
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlhdCI6MTY4MTI5NDUwMiwiZXhwIjoxNjgxMzgwOTAyfQ.3QQnnoL-NPXIOF-usgweg3Yr9EI6y9poAHK-OXBZ3dk"
+    },
+    {
+        "id": "3",
+        "name": "user",
+        "email": "user@gmail.com",
+        "password": "$2b$10$Cvvp8eBEXpfphoeepjqthe0Iz/ykiGWBo6OXVuvZ9UGZHp8yDUbUq",
+        "roles": ["USER"],
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwiaWF0IjoxNjgxMjk0NTU5LCJleHAiOjE2ODEzODA5NTl9.mgpqRJj72uYg9UA3BwSDL4SM96JjqM9oguH5EPjTMJU"
+    }
+]

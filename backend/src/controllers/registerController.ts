@@ -6,6 +6,7 @@ import fs from 'fs';
 import bcrypt from 'bcrypt';
 import { randomUUID } from 'crypto';
 import path from 'path';
+import { ROLES_LIST } from '../config/rolesList';
 
 class Register {
     private usersDB: UsersApiDto;
@@ -31,7 +32,15 @@ class Register {
 
         try{
             const hashedPassword = await bcrypt.hash(password, 10);
-            const newUser = {id: randomUUID(), name, email, password: hashedPassword, refreshToken: null};
+            
+            const newUser = {
+                id: randomUUID(), 
+                name, 
+                email, 
+                password: hashedPassword, 
+                roles: [ ROLES_LIST.USER ],
+                refreshToken: null
+            };
             this.usersDB.setUsers([...this.usersDB.users, newUser]);
             await this.fsPromises.writeFile(
                 path.join(__dirname, '..', 'model', 'Users.json'),

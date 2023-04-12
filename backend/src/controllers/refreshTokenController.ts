@@ -36,8 +36,14 @@ class Refresh {
             process.env.REFRESH_TOKEN_SECRET as string,
             (err: any, decoded: any) => {
                 if(err || foundUser.email !== (decoded as TokenInterface).email) return res.sendStatus(403); 
+                const roles = foundUser.roles;
                 const accessToken = jwt.sign(
-                    { 'email': (decoded as TokenInterface).email },
+                    { 
+                        'UserInfo': {
+                            'email': (decoded as TokenInterface).email,
+                            roles
+                        }
+                    },
                     process.env.ACCESS_TOKEN_SECRET as string,
                     { expiresIn: '30s' }
                 );
