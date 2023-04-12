@@ -7,6 +7,7 @@ import { auth, logout, refresh, register, root } from './routes';
 import { categories, goods } from './routes/api';
 import { corsOptions } from './config';
 import cookieParser from 'cookie-parser';
+import { swaggerDocs } from './utils/swagger';
 
 dotenv.config();
 
@@ -26,7 +27,7 @@ app.use('/auth', auth);
 app.use('/refresh', refresh);
 app.use('/logout', logout);
 
-app.use(verifyJWT);
+// app.use(verifyJWT);
 app.use('/goods', goods);
 app.use('/categories', categories);
 
@@ -34,4 +35,6 @@ app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
+  swaggerDocs(app, Number(port));
+  console.log(`[server]: Docs available at http://localhost:${port}/docs`);
 });

@@ -7,6 +7,17 @@ const router = Router();
 const goodsController = new Category();
 
 router.route('/')
+    /**
+     * @openapi
+     * /categories:
+     *  get:
+     *    tag:
+     *      - Categories
+     *      description: Show all categories
+     *      responses:
+     *        200:
+     *          descriptions: Categories were found
+     */
     .get(goodsController._getAllCategories.bind(goodsController))
     .post(verifyRoles(ROLES_LIST.ADMIN, ROLES_LIST.EDITOR), goodsController._createNewCategory.bind(goodsController))
     .put(verifyRoles(ROLES_LIST.ADMIN, ROLES_LIST.EDITOR), goodsController._updateCategory.bind(goodsController))
