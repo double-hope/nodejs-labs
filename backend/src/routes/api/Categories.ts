@@ -8,15 +8,15 @@ const goodsController = new Category();
 
 router.route('/')
     /**
-     * @openapi
-     * /categories:
-     *  get:
-     *    tag:
-     *      - Categories
-     *      description: Show all categories
-     *      responses:
-     *        200:
-     *          descriptions: Categories were found
+     * @swagger
+     * components:
+     *   schemas:
+     *     Categories:
+     *       type: object
+     *       required:
+     *         - id
+     *         - name
+     * 
      */
     .get(goodsController._getAllCategories.bind(goodsController))
     .post(verifyRoles(ROLES_LIST.ADMIN, ROLES_LIST.EDITOR), goodsController._createNewCategory.bind(goodsController))

@@ -6,7 +6,7 @@ const options: swaggerJsdoc.Options = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'REST API Docs',
+            title: 'Node.js labs Docs',
             version: '1.0.0'
         },
         components: {
@@ -24,7 +24,7 @@ const options: swaggerJsdoc.Options = {
             },
         ]
     },
-    apis: ['./src/routes/api/index.ts', './src/dto/*.ts'],
+    apis: ['../routes/api/*.ts'],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
@@ -37,4 +37,4 @@ const swaggerDocs = (app: Express, port: number) => {
     })
 }
 
-export { swaggerDocs };
+export { swaggerSpec };
