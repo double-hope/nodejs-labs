@@ -39,7 +39,7 @@ const server = http.createServer((resquest, response) => {
         </script>
     `);
 
-    news.map((data, key) => {
+    news.forEach((data, key) => {
         response.write(`<h3 onclick="changeVisibility(${key});" style="cursor: pointer">${data.name}</h3>`)
         response.write(`<p id="text${key}" style="display: none">${data.text}</p>`)
     })
