@@ -9,10 +9,12 @@ import { corsOptions } from './config';
 import cookieParser from 'cookie-parser';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './utils/swagger';
+import { PrismaClient } from '@prisma/client';
 
 dotenv.config();
 
 const app: Express = express();
+export const client = new PrismaClient();
 const port = process.env.PORT || 3001;
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
@@ -29,7 +31,7 @@ app.use('/auth', auth);
 app.use('/refresh', refresh);
 app.use('/logout', logout);
 
-// app.use(verifyJWT);
+app.use(verifyJWT);
 app.use('/goods', goods);
 app.use('/categories', categories);
 

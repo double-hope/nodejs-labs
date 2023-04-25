@@ -1,6 +1,11 @@
+import { CategoryDto } from "./Categories";
+import { Prisma } from '@prisma/client';
+
 export interface GoodsDto {
-    id : string;
+    id : number;
     name : string;
-    price : number;
+    price : Prisma.Decimal | number;
     description : string;
+    categoryId? : number;
+    category? : CategoryDto;
 }
