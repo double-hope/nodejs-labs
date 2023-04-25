@@ -14,7 +14,7 @@ import { PrismaClient } from '@prisma/client';
 dotenv.config();
 
 const app: Express = express();
-export const client = new PrismaClient();
+const client = new PrismaClient();
 const port = process.env.PORT || 3001;
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
@@ -42,3 +42,5 @@ app.listen(port, () => {
   
   console.log(`[server]: Docs available at http://localhost:${port}/docs`);
 });
+
+export { client };
