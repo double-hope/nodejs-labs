@@ -29,7 +29,7 @@ app.use('/auth', auth);
 app.use('/refresh', refresh);
 app.use('/logout', logout);
 
-app.use(verifyJWT);
+// app.use(verifyJWT);
 app.use('/goods', goods);
 app.use('/categories', categories);
 
