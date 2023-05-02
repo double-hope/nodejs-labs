@@ -1,12 +1,12 @@
-import { DefaultLayout } from '@/components';
+import { DefaultLayout, Main } from '@/components';
 import React from 'react';
 
-const Main: React.FC = () => {
+const MainPage: React.FC = () => {
   return (
-    <div>
-      <DefaultLayout></DefaultLayout>
-    </div>
+    <>
+      <Main />
+    </>
   )
 }
 
-export default Main;
+export default MainPage;

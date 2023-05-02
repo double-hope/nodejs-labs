@@ -1,15 +1,25 @@
 import React from 'react';
 import '@/styles/global-styles.scss'
 import { Provider } from 'react-redux';
-import { setupStore } from '@/store/store';
+import { store } from '@/store/store';
+import { NextPage } from 'next';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 
-const store = setupStore();
+const queryClient = new QueryClient();
 
-const App: React.FC<any> = ({Component, pageProps}) => {
+const App: NextPage<any> = ({Component, pageProps}) => {  
+
   return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
+    <React.StrictMode>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <Component {...pageProps} />
+        </QueryClientProvider>
+      </Provider>
+    </React.StrictMode>
   )
 }
 

@@ -1,0 +1,73 @@
+@import '@/styles/variables/color-variables.module.scss';
+
+.main {
+    display: flex;
+    background-color: $black;
+    color: $white;
+    padding: 100px;
+    flex-grow: 1;
+
+    & h1 {
+        font-size: 60px;
+    }
+
+    & p {
+        font-size: 20px;
+    }
+
+    & > div {
+        flex-grow: 1;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    & > div {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+.picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & img {
+        border-radius: 20px;
+        height: 60vh;
+        width: auto;
+    }
+}
+
+.shape1, .shape2, .shape3 {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 10%;
+    width: 400px;
+    height: 400px;
+    filter: blur(24px);
+}
+
+.shape1 {
+    background-color: #00CEA9;
+    top: 140px;
+    right: 40px;
+}
+
+.shape2 {
+    background-color: #0008CE;
+    top: 80px;
+    right: 400px;
+}
+
+.shape3 {
+    background-color: #9b00ce;
+    top: 300px;
+    right: 700px;
+}

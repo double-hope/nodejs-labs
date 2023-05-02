@@ -1,9 +1,15 @@
 import { Category } from '@/models';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { HYDRATE } from "next-redux-wrapper";
 
 export const categoryAPI = createApi({
     reducerPath: 'categoryAPI',
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3001'}),
+    extractRehydrationInfo(action, { reducerPath }) {
+        if (action.type === HYDRATE) {
+          return action.payload[reducerPath]
+        }
+    },
     tagTypes: ['Category'],
     endpoints: (build) => ({
         fetchAllCategories: build.query<Category[], number>({

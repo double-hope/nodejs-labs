@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { categoryAPI, goodAPI, userAPI } from "@/services";
 
-const rootResucer = combineReducers({
+const rootReducer = combineReducers({
     [userAPI.reducerPath]: userAPI.reducer,
     [goodAPI.reducerPath]: goodAPI.reducer,
     [categoryAPI.reducerPath]: categoryAPI.reducer,
@@ -9,12 +9,16 @@ const rootResucer = combineReducers({
 
 export const setupStore = () => {
     return configureStore({
-        reducer: rootResucer,
+        reducer: rootReducer,
         middleware: (getDefaultMiddleware) => 
-            getDefaultMiddleware().concat(userAPI.middleware).concat(goodAPI.middleware).concat(categoryAPI.middleware),
+            getDefaultMiddleware()
+                .concat(userAPI.middleware)
+                .concat(goodAPI.middleware)
+                .concat(categoryAPI.middleware),
     })
 }
 
-export type RootState = ReturnType<typeof rootResucer>;
+export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = AppStore['dispatch'];
+export const store = setupStore();
