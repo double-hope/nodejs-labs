@@ -1,1 +1,1 @@
-export * from './good-item';
+export * from './component';

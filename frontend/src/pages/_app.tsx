@@ -23,4 +23,4 @@ const App: NextPage<any> = ({Component, pageProps}) => {
   )
 }
 
-export default App
+export default App;

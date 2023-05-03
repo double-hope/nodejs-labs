@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './button.module.scss';
+import styles from './styles.module.scss';
 import { ButtonProps } from './types';
 
 const Button = ({text}: ButtonProps) => {

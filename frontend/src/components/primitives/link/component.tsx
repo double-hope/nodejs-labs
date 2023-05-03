@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './link.module.scss';
+import styles from './styles.module.scss';
 import { LinkProps } from './types';
 import Link from 'next/link';
 

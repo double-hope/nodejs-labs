@@ -1,0 +1,15 @@
+@import '@/styles/variables/color-variables.module.scss';
+
+.itemWrapper {
+    width: 100%;
+    padding: 20px 30px;
+    border-radius: 5px;
+    color: $white;
+    cursor: pointer;
+    transition: all .2s;
+    z-index: 10;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, .2);
+    }
+}

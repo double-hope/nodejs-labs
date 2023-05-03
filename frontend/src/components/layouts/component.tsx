@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from '../header';
 import { DefaultLayoutProps } from './types';
-import styles from './default-layout.module.scss';
+import styles from './styles.module.scss';
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({children}) => {
   return (

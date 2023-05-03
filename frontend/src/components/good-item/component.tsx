@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoodItemProps } from './types';
-import styles from './good-item.module.scss';
+import styles from './styles.module.scss';
 
 const GoodItem: React.FC<GoodItemProps> = ({name, description, price}) => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './main.module.scss';
-import { Button, CustomLink } from '../primitives';
+import styles from './styles.module.scss';
+import { CustomLink } from '../primitives';
 import Image from 'next/image';
 import pic from '@/mocks/images/pic.jpg';
 

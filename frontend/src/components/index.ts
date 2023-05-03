@@ -5,3 +5,4 @@ export * from './main';
 export * from './primitives';
 export * from './category-item';
 export * from './good-item';
+export * from './side-navigation';

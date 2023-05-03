@@ -1,7 +1,7 @@
 import React from 'react';
 import { CategoryItemProps } from './types';
 import { GoodItem } from '../good-item';
-import styles from './category-item.module.scss';
+import styles from './styles.module.scss';
 
 const CategoryItem: React.FC<CategoryItemProps> = ({name, description, goods}) => {
   return (

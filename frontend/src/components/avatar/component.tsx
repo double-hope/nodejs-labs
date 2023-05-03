@@ -1,6 +1,6 @@
 import React from 'react';
 import { AvatarType } from './types';
-import styles from './avatar.module.scss';
+import styles from './styles.module.scss';
 import Image from 'next/image';
 import picture from '@/mocks/images/avatar.jpg';
 import { SizeToNumber } from '@/common';
