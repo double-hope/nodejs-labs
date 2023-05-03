@@ -30,6 +30,7 @@ class Category {
         const newCategory = {
             id: randomUUID(),
             name: req.body.name,
+            description: req.body.description,
             goods: []
         }
 
@@ -48,6 +49,7 @@ class Category {
             return res.status(400).json({'message': `ID ${req.body.id} was not found`});
         
         if(req.body.name) category.name = req.body.name;
+        if(req.body.description) category.description = req.body.description;
 
         const filteredData = this.data.categories.filter(category => category.id !== req.body.id);
         this.data.setCategories([...filteredData, category]);

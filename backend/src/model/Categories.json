@@ -2,12 +2,25 @@
     {
         "id": "1",
         "name": "komps",
+        "description": "Category with komps",
         "goods": [
             {
                 "id": "1",
                 "name": "komp1",
                 "price": 500,
                 "description": "nicec komp"
+            },
+            {
+                "id": "2",
+                "name": "komp2",
+                "price": 500,
+                "description": "nicec komp2"
+            },
+            {
+                "id": "3",
+                "name": "komp3",
+                "price": 500,
+                "description": "nicec komp3"
             }
         ]
     }

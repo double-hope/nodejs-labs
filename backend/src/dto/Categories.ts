@@ -4,4 +4,5 @@ export interface CategoryDto {
     id: string;
     name : string;
     goods : GoodsDto[];
+    description: string;
 }

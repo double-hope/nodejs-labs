@@ -1,10 +1,11 @@
+import { CategoryItem, DefaultLayout } from '@/components';
 import { Category } from '@/models';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import React from 'react';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   
-  const res = await fetch('http://localhost:3001/categories');
+  const res = await fetch('http://localhost:3002/categories');
   const categories: Category[] = await res.json();
 
   return {
@@ -14,17 +15,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 
 const CategoriesPage: NextPage = ({categories}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log(categories);
   
   return (
-    <div>
-      {categories.map((category: Category, key: number) => 
-        <div key={key}>
-          <h1>{category.name}</h1>
-
-        </div>
-        
-      )}
-    </div>
+    <DefaultLayout>
+      <>
+        {categories.map((category: Category, key: number) => 
+          <CategoryItem name={category.name} description={category.description} goods={category.goods} key={key} />
+        )}
+      </>
+    </DefaultLayout>
   )
 }
 
