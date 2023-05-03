@@ -1,0 +1,15 @@
+@import '@/styles/variables/color-variables.module.scss';
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    & input {
+        background-color: $black;
+        color: $white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+}

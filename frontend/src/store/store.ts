@@ -1,10 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { categoryAPI, goodAPI, userAPI } from "@/services";
+import { categoryAPI, goodAPI, authAPI } from "@/services";
 
 const rootReducer = combineReducers({
-    [userAPI.reducerPath]: userAPI.reducer,
     [goodAPI.reducerPath]: goodAPI.reducer,
     [categoryAPI.reducerPath]: categoryAPI.reducer,
+    [authAPI.reducerPath]: authAPI.reducer,
 });
 
 export const setupStore = () => {
@@ -12,9 +12,9 @@ export const setupStore = () => {
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) => 
             getDefaultMiddleware()
-                .concat(userAPI.middleware)
                 .concat(goodAPI.middleware)
-                .concat(categoryAPI.middleware),
+                .concat(categoryAPI.middleware)
+                .concat(authAPI.middleware),
     })
 }
 

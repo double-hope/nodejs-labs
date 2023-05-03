@@ -2,7 +2,7 @@ import React from 'react'
 
 const NotFound = () => {
   return (
-    <div>bad((((</div>
+    <div style={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>No such page</div>
   )
 }
 
