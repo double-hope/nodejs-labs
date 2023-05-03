@@ -1,6 +1,6 @@
 import { Good } from "@/models";
 
-export type CategoryItemProps = {
+export type CategoriesItemProps = {
     name: string;
     description: string;
     goods: Good[];

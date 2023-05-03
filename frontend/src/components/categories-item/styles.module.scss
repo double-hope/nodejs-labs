@@ -1,0 +1,17 @@
+.categoryWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & h1:hover {
+        display: inline;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.goodsWrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}

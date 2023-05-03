@@ -1,3 +1,4 @@
+import { DefaultLayout, GoodsItem } from '@/components';
 import { Good } from '@/models';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import React from 'react';
@@ -15,7 +16,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 const GoodsPage: NextPage = ({goods}: InferGetStaticPropsType<typeof getStaticProps>) => {
 
     return (
-        <div>GoodsPage</div>
+        <DefaultLayout>
+            <GoodsItem goods={goods} />
+        </DefaultLayout>
     )
 }
 

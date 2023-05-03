@@ -1,11 +1,5 @@
-.categoryWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
 .goodsWrapper {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
+    gap: 20px;
 }

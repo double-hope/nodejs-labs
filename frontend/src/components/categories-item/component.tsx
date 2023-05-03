@@ -1,9 +1,9 @@
 import React from 'react';
-import { CategoryItemProps } from './types';
+import { CategoriesItemProps } from './types';
 import { GoodItem } from '../good-item';
 import styles from './styles.module.scss';
 
-const CategoryItem: React.FC<CategoryItemProps> = ({name, description, goods}) => {
+const CategoriesItem: React.FC<CategoriesItemProps> = ({name, description, goods}) => {
   return (
     <div className={styles.categoryWrapper}>
       <div>
@@ -23,4 +23,4 @@ const CategoryItem: React.FC<CategoryItemProps> = ({name, description, goods}) =
   )
 }
 
-export { CategoryItem };
+export { CategoriesItem };

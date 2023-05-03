@@ -1,4 +1,4 @@
-import { CategoryItem, DefaultLayout } from '@/components';
+import { CategoriesItem, DefaultLayout } from '@/components';
 import { Category } from '@/models';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import React from 'react';
@@ -21,7 +21,7 @@ const CategoriesPage: NextPage = ({categories}: InferGetStaticPropsType<typeof g
     <DefaultLayout>
       <>
         {categories.map((category: Category, key: number) => 
-          <CategoryItem name={category.name} description={category.description} goods={category.goods} key={key} />
+          <CategoriesItem name={category.name} description={category.description} goods={category.goods} key={key} />
         )}
       </>
     </DefaultLayout>

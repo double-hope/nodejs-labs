@@ -14,17 +14,17 @@ const Header: React.FC<HeaderProps> = () => {
 
   return (
     <header className={styles.header}>
-      <div onClick={() => setNav(true)}>
+      <div onClick={() => setNav(true)} className={styles.menu}>
         <FontAwesomeIcon icon={faBars} />
       </div>
       
       <Avatar size={SizeEnum.SMALL} />
 
       <SideNavigation opened={nav} setOpened={setNav}>
-        <NavigationItem content='All categories' />
-        <NavigationItem content='All goods' />
-        <NavigationItem content='My profile' />
-        <NavigationItem content='Logout' />
+        <NavigationItem content='All categories' href='categories' />
+        <NavigationItem content='All goods' href='goods' />
+        <NavigationItem content='My profile' href='profile' />
+        <NavigationItem content='Logout' href='categories' />
       </SideNavigation>
     </header>
   )

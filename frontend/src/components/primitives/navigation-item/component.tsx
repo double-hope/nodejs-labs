@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavigationItemProps } from './types';
 import styles from './styles.module.scss';
+import Link from 'next/link';
 
-const NavigationItem:  React.FC<NavigationItemProps> = ({content}) => {
+const NavigationItem:  React.FC<NavigationItemProps> = ({content, href}) => {
   return (
-    <div className={styles.itemWrapper}>
+    <Link className={styles.itemWrapper} href={href}>
         {content}
-    </div>
+    </Link>
   )
 }
 
