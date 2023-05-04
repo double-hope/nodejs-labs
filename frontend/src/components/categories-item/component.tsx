@@ -21,12 +21,14 @@ const CategoriesItem: React.FC<CategoriesItemProps> = ({name, description, goods
 
   return (
     <div className={styles.categoryWrapper}>
+        
       <div>
         <div className={styles.controlCategory}>
           <h1><Link href={`/categories/edit/${id}`}>{name}</Link></h1>
           <div onClick={handleDelete}>
             <FontAwesomeIcon icon={faBucket} />
           </div>
+          
         </div>
         
         <p>{description}</p>

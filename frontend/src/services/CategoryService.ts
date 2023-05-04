@@ -1,4 +1,4 @@
-import { Categories, Category, UpdateCategory } from '@/models';
+import { Categories, Category, CreateCategory, UpdateCategory } from '@/models';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 export const categoryAPI = createApi({
@@ -24,7 +24,7 @@ export const categoryAPI = createApi({
             }),
             providesTags: result => ['Category']
         }),
-        createCategory: build.mutation<Category, {category: Category, accessToken: string}>({
+        createCategory: build.mutation<Category, {category: CreateCategory, accessToken: string}>({
             query: ({category, accessToken}) => ({
               url: '/categories',
               method: 'POST',

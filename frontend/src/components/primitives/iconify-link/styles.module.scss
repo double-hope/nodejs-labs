@@ -1,0 +1,16 @@
+.linkWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+    
+    & div {
+        background-color: black;
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+    }
+    & a {
+        color: white;
+    }
+}

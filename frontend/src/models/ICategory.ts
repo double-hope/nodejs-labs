@@ -7,10 +7,12 @@ export interface Category {
     goods?: Good[] | [];
 }
 
-export interface UpdateCategory {
+export interface CreateCategory {
     name: string;
     description: string;
 }
+
+export interface UpdateCategory extends CreateCategory {}
 
 export interface Categories {
     categories: Category[];
