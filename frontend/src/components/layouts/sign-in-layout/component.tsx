@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { AuthContext } from '@/context';
 import Link from 'next/link';
 import { useGetUser } from '@/hooks';
+import jwtDecode from 'jwt-decode';
 
 const SignInLayout = () => {
     
@@ -37,11 +38,14 @@ const SignInLayout = () => {
     useEffect(() => {
          
         if(isSuccess) {
+            const decoded = jwtDecode(data.accessToken);
+
             setAuth({
                 user: {
                     name: data.user.name,
                     email: data.user.email,
                     accessToken: data.accessToken,
+                    roles: decoded?.UserInfo?.roles,
                 },
             });
 

@@ -41,6 +41,7 @@ const SignUpLayout = () => {
                     name: data.user.name,
                     email: data.user.email,
                     accessToken: '',
+                    roles: [],
                 },
             });
 

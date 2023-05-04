@@ -26,7 +26,7 @@ class Goods {
         res.json(good);
     }
 
-    public _createNewGood(req: Request, res: Response) {
+    public _createNewGood(req: Request, res: Response) {        
         const newGood = {
             id: randomUUID(),
             name: req.body.name,

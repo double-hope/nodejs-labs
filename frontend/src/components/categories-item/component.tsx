@@ -16,7 +16,7 @@ const CategoriesItem: React.FC<CategoriesItemProps> = ({name, description, goods
   const handleDelete = async (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
 
-    await deleteCategory({id, accessToken: user?.accessToken ?? ''});
+    await deleteCategory({id, accessToken: user?.accessToken ?? '', roles: user?.roles ?? []});
   }
 
   return (

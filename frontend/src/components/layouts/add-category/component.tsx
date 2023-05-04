@@ -4,9 +4,10 @@ import { categoryAPI } from '@/services';
 import { Button, Input } from '@/components/primitives';
 import { CreateCategory } from '@/models';
 import { useRouter } from "next/router";
+import { useGetUser } from '@/hooks';
 
 const AddCategory: React.FC = () => {
-
+    useGetUser();
     const { user } = useContext(AuthContext);
     const router = useRouter();
     
@@ -17,13 +18,14 @@ const AddCategory: React.FC = () => {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        console.log(user);
+        
         const category: CreateCategory = {
             name,
             description,
         }
 
-        await createCategory({category, accessToken: user?.accessToken ?? ''});
+        await createCategory({category, accessToken: user?.accessToken ?? '', roles: user?.roles ?? []});
 
     }
 

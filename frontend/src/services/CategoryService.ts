@@ -24,25 +24,30 @@ export const categoryAPI = createApi({
             }),
             providesTags: result => ['Category']
         }),
-        createCategory: build.mutation<Category, {category: CreateCategory, accessToken: string}>({
-            query: ({category, accessToken}) => ({
+        createCategory: build.mutation<Category, {category: CreateCategory, accessToken: string, roles: []}>({
+            query: ({category, accessToken, roles}) => ({
               url: '/categories',
               method: 'POST',
-              body: category,
+              body: {
+                name: category.name,
+                description: category.description,
+                roles,
+              },
               headers: {
                 Authorization: `Bearer ${accessToken}`,
               },
             }),
             invalidatesTags: ['Category']
         }),
-        updateCategory: build.mutation<Category, {id: string, category: UpdateCategory, accessToken: string}>({
-            query: ({id, category, accessToken}) => ({
+        updateCategory: build.mutation<Category, {id: string, category: UpdateCategory, accessToken: string, roles: []}>({
+            query: ({id, category, accessToken, roles}) => ({
                 url: `/categories`,
                 method: 'PUT',
                 body: {
                     id,
                     name: category.name,
                     description: category.description,
+                    roles,
                 },
                 headers: {
                     Authorization: `Bearer ${accessToken}`
@@ -50,12 +55,13 @@ export const categoryAPI = createApi({
             }),
             invalidatesTags: ['Category']
         }),
-        deleteCategory: build.mutation<Category, {id: string, accessToken: string}>({
-            query: ({id, accessToken}) => ({
+        deleteCategory: build.mutation<Category, {id: string, accessToken: string, roles: []}>({
+            query: ({id, accessToken, roles}) => ({
                 url: `/categories`,
                 method: 'DELETE',
                 body: {
                     id,
+                    roles,
                 },
                 headers: {
                     Authorization: `Bearer ${accessToken}`

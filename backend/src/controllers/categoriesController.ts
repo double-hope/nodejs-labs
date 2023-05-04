@@ -27,6 +27,8 @@ class Category {
     }
 
     public _createNewCategory(req: Request, res: Response) {
+        console.log(req.body);
+        
         const newCategory = {
             id: randomUUID(),
             name: req.body.name,

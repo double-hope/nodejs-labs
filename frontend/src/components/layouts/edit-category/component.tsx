@@ -25,7 +25,7 @@ const EditCategory: React.FC<EditCategoryProps> = ({id}) => {
             description,
         }
 
-        updateCategory({id, category, accessToken: user?.accessToken ?? ''});
+        updateCategory({id, category, accessToken: user?.accessToken ?? '', roles: user?.roles ?? []});
 
     }
 

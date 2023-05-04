@@ -15,32 +15,47 @@ export const goodAPI = createApi({
             }),
             providesTags: result => ['Good']
         }),
-        createGood: build.mutation<Good, {good: Good, accessToken: string}>({
-            query: ({good, accessToken}) => ({
+        createGood: build.mutation<Good, {good: Good, accessToken: string, roles: []}>({
+            query: ({good, accessToken, roles}) => ({
                 url: '/goods',
                 method: 'POST',
-                body: good,
+                body: {
+                    name: good.name,
+                    price: good.price,
+                    description: good.description,
+                    roles,
+                },
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
             }),
             invalidatesTags: ['Good']
         }),
-        updateGood: build.mutation<Good, {good: Good, accessToken: string}>({
-            query: ({good, accessToken}) => ({
-                url: `/goods/${good.id}`,
+        updateGood: build.mutation<Good, {good: Good, accessToken: string, roles: []}>({
+            query: ({good, accessToken, roles}) => ({
+                url: `/goods`,
                 method: 'PUT',
-                body: good,
+                body: {
+                    id: good.id, 
+                    name: good.name,
+                    price: good.price,
+                    description: good.description,
+                    roles,
+                },
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
             }),
             invalidatesTags: ['Good']
         }),
-        deleteGood: build.mutation<Good, {good: Good, accessToken: string}>({
-            query: ({good, accessToken}) => ({
-                url: `/goods/${good.id}`,
+        deleteGood: build.mutation<Good, {good: Good, accessToken: string, roles: []}>({
+            query: ({good, accessToken, roles}) => ({
+                url: `/goods`,
                 method: 'DELETE',
+                body: {
+                    id: good.id,
+                    roles,
+                },
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },

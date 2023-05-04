@@ -9,6 +9,7 @@ type User = {
     name: string;
     email: string;
     accessToken: string;
+    roles: [];
 };
 
 const AuthProvider = ({ children }: ProviderProps) => {
