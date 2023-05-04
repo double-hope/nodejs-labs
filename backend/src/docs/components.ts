@@ -3,57 +3,74 @@ module.exports = {
       schemas: {
         id: {
           type: "string",
-          description: "An id of a todo",
-          example: "tyVgf",
+          description: "An id of an object",
+          example: "1",
         },
-        Todo: {
+        Object: {
           type: "object",
           properties: {
             id: {
               type: "string",
-              description: "Todo identification number",
-              example: "ytyVgh",
+              description: "Object identification number",
+              example: "3",
             },
             title: {
               type: "string",
-              description: "Todo's title",
-              example: "Coding in JavaScript",
+              description: "Object's title",
+              example: "Object",
             },
-            completed: {
-              type: "boolean",
-              description: "The status of the todo",
-              example: false,
-            },
+            description:{
+              type: "string",
+              description: "Object's description",
+              example: "nice object, pretty well"
+            }
           },
         },
-        TodoInput: {
+        Category: {
           type: "object",
           properties: {
-            title: {
+            id: {
               type: "string",
-              description: "Todo's title",
-              example: "Coding in JavaScript",
+              description: "Category identification number",
+              example: "1",
             },
-            completed: {
-              type: "boolean",
-              description: "The status of the todo",
-              example: false,
+            name: {
+              type: "string",
+              description: "Category's title",
+              example: "komps",
             },
+            description:{
+              type: "string",
+              description: "Category's description",
+              example: "category with komps"
+            },
+
           },
         },
-        Error: {
+        Good: {
           type: "object",
           properties: {
-            message: {
+            id: {
               type: "string",
-              description: "Error message",
-              example: "Not found",
+              description: "Good identification number",
+              example: "3",
             },
-            internal_code: {
+            name: {
               type: "string",
-              description: "Error internal code",
-              example: "Invalid parameters",
+              description: "Good's title",
+              example: "komp1",
             },
+            price:{
+              type: 'int',
+              description: "Good's price",
+              example: 500
+            },
+            description:{
+              type: "string",
+              description: "Category's description",
+              example: "nicec comp"
+            },
+
           },
         },
       },

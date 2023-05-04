@@ -20,20 +20,13 @@ module.exports = {
           content: {
             "application/json": {
               schema: {
-                $ref: "#/components/schemas/Todo",
+                $ref: "#/components/schemas/Object",
               },
             },
           },
         },
         404: {
           description: "Todo is not found",
-          content: {
-            "application/json": {
-              schema: {
-                $ref: "#/components/schemas/Error",
-              },
-            },
-          },
         },
       },
     },
