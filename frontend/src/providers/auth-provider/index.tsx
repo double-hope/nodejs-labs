@@ -5,13 +5,24 @@ type ProviderProps = {
     children: ReactNode;
 }
 
+type User = {
+    name: string;
+    email: string;
+    accessToken: string;
+};
+
 const AuthProvider = ({ children }: ProviderProps) => {
-    const [auth, setAuth] = useState<boolean>(!!sessionStorage.getItem('accessToken'));
-    const authProvidedValue = { auth, setAuth };
+
+    const [auth, setAuth] = useState<{ user: User | null, accessToken: string }>({
+        user: null,
+        accessToken: '',
+    });
 
     return (
-        <AuthContext.Provider value={authProvidedValue}>{children}</AuthContext.Provider>
-    )
+        <AuthContext.Provider value={{ user: auth.user, setAuth }}>
+            {children}
+        </AuthContext.Provider>
+    );
 }
 
 export { AuthProvider };

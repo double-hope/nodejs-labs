@@ -1,9 +1,10 @@
-import React, { useState, FormEvent, useEffect } from 'react';
+import React, { useState, FormEvent, useEffect, useContext } from 'react';
 import styles from './styles.module.scss';
 import { Button, Input } from '@/components/primitives';
 import { useRegisterUserMutation } from '@/services';
 import { RegisterUser } from '@/models/IRegisterUser';
 import { useRouter } from "next/router";
+import { AuthContext } from '@/context';
 
 const SignUpLayout = () => {
     
@@ -11,6 +12,8 @@ const SignUpLayout = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
+
+    const { setAuth } = useContext(AuthContext);
 
     const [registerUser, { isSuccess, data }] = useRegisterUserMutation();
 
@@ -28,7 +31,17 @@ const SignUpLayout = () => {
     }
 
     useEffect(() => { 
-        if(isSuccess) router.push('/categories');
+        if(isSuccess) {
+            setAuth({
+                user: {
+                    name: data.user.name,
+                    email: data.user.email,
+                },
+                accessToken: '',
+            });
+
+            router.push('/categories');
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isSuccess]);
 

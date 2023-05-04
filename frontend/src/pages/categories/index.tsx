@@ -1,28 +1,29 @@
-import { CategoriesItem, DefaultLayout } from '@/components';
+import { CategoriesItem, DefaultLayout, Loader } from '@/components';
+import { AuthContext } from '@/context';
 import { Category } from '@/models';
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import React from 'react';
+import { categoryAPI } from '@/services';
+import { NextPage } from 'next';
+import React, { useContext } from 'react';
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  
-  const res = await fetch('http://localhost:3030/categories');
-  const categories: Category[] = await res.json();
+const CategoriesPage: NextPage = () => {
 
-  return {
-    props: {...categories}
-  }
-}
+  const { user } = useContext(AuthContext);
 
+  const { data } = categoryAPI.useFetchAllCategoriesQuery(user?.accessToken ?? '');
 
-const CategoriesPage: NextPage = ({categories}: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(categories);
-  
   return (
     <DefaultLayout>
       <>
-        {categories.map((category: Category, key: number) => 
+
+        {
+        data
+        ? data?.categories.map((category: Category, key: number) => 
           <CategoriesItem name={category.name} description={category.description} goods={category.goods} key={key} />
-        )}
+        )
+          
+        : <Loader />
+          
+      }
       </>
     </DefaultLayout>
   )

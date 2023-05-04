@@ -1,5 +1,22 @@
 import { createContext } from 'react';
 
-type AuthContextType = { auth: boolean, setAuth: (auth: boolean) => void };
+type User = {
+    name: string;
+    email: string;
+    accessToken: string;
+  };
+  
+type AuthContextValue = {
+    user: User | null;
+    setAuth: React.Dispatch<React.SetStateAction<{
+        user: User | null;
+        accessToken: string;
+    }>>;
+};
 
-export const AuthContext = createContext<AuthContextType>({ auth: !!sessionStorage.getItem('accessToken'), setAuth: (auth: boolean) => {} });
+const AuthContext = createContext<AuthContextValue>({
+    user: null,
+    setAuth: () => {},
+});
+
+export { AuthContext };

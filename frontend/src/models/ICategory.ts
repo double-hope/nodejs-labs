@@ -6,3 +6,7 @@ export interface Category {
     description: string;
     goods : Good[];
 }
+
+export interface Categories {
+    categories: Category[];
+}

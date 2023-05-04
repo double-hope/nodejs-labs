@@ -7,7 +7,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import { AppContextProvider } from '@/providers';
+import { AuthProvider } from '@/providers';
 
 const queryClient = new QueryClient();
 
@@ -17,9 +17,9 @@ const App: NextPage<any> = ({Component, pageProps}) => {
     <React.StrictMode>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <AppContextProvider>     
+          <AuthProvider>
             <Component {...pageProps} />
-          </AppContextProvider>
+          </AuthProvider>
         </QueryClientProvider>
       </Provider>
     </React.StrictMode>

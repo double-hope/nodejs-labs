@@ -1,23 +1,24 @@
-import { DefaultLayout, GoodsItem } from '@/components';
+import { DefaultLayout, GoodsItem, Loader } from '@/components';
 import { Good } from '@/models';
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import React from 'react';
+import { NextPage } from 'next';
+import React, { useContext } from 'react';
+import { AuthContext } from '@/context';
+import { goodAPI } from '@/services';
 
-export const getStaticProps: GetStaticProps = async (context) => {
+const GoodsPage: NextPage = () => {
 
-    const res = await fetch('http://localhost:3030/goods');
-    const goods: Good[] = await res.json();
+    const { user } = useContext(AuthContext);
 
-    return {
-        props: {...goods}
-    }
-}
-
-const GoodsPage: NextPage = ({goods}: InferGetStaticPropsType<typeof getStaticProps>) => {
+    const { data } = goodAPI.useFetchAllGoodsQuery(user?.accessToken ?? '');
 
     return (
         <DefaultLayout>
-            <GoodsItem goods={goods} />
+            {
+                data
+                ? <GoodsItem goods={data.goods} />
+                : <Loader />
+            }
+            
         </DefaultLayout>
     )
 }

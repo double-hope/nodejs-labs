@@ -59,7 +59,7 @@ class Auth {
             );
 
             res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'none', secure: true, maxAge: 24 * 60 * 60 * 1000 });
-            res.json({ accessToken });
+            res.json({ user: foundUser, accessToken });
         } else {
             res.sendStatus(401);
         }

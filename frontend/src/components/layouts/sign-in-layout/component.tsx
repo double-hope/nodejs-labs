@@ -1,9 +1,10 @@
-import React, { useState, FormEvent, useEffect } from 'react';
+import React, { useState, FormEvent, useEffect, useContext } from 'react';
 import styles from './styles.module.scss';
 import { Button, Input } from '@/components/primitives';
 import { useAuthUserMutation } from '@/services';
 import { AuthUser } from '@/models';
 import { useRouter } from "next/router";
+import { AuthContext } from '@/context';
 
 const SignInLayout = () => {
     
@@ -11,8 +12,10 @@ const SignInLayout = () => {
     const [password, setPassword] = useState('');
     const router = useRouter();
 
-    const [authUser, { isSuccess, data }] = useAuthUserMutation();
+    const { setAuth } = useContext(AuthContext);
 
+    const [authUser, { isSuccess, data }] = useAuthUserMutation();
+    
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -27,8 +30,19 @@ const SignInLayout = () => {
         
     }
 
-    useEffect(() => { 
-        if(isSuccess) router.push('/categories');
+    useEffect(() => {
+         
+        if(isSuccess) {
+            setAuth({
+                user: {
+                    name: data.user.name,
+                    email: data.user.email,
+                },
+                accessToken: data.accessToken,
+            });
+            
+            router.push('/categories');
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isSuccess]);
     

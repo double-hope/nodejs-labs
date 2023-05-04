@@ -1,4 +1,4 @@
-import { Good } from '@/models';
+import { Good, Goods } from '@/models';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 export const goodAPI = createApi({
@@ -6,35 +6,44 @@ export const goodAPI = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3030'}),
     tagTypes: ['Good'],
     endpoints: (build) => ({
-        fetchAllGoods: build.query<Good[], number>({
-            query: (limit: number = 5) => ({
+        fetchAllGoods: build.query<Goods, string>({
+            query: (accessToken: string) => ({
                 url: '/goods',
-                params: {
-                    limit,
-                }
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
             }),
             providesTags: result => ['Good']
         }),
-        createGood: build.mutation<Good, Good>({
-            query: (good) => ({
+        createGood: build.mutation<Good, {good: Good, accessToken: string}>({
+            query: ({good, accessToken}) => ({
                 url: '/goods',
                 method: 'POST',
                 body: good,
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
             }),
             invalidatesTags: ['Good']
         }),
-        updateGood: build.mutation<Good, Good>({
-            query: (good) => ({
+        updateGood: build.mutation<Good, {good: Good, accessToken: string}>({
+            query: ({good, accessToken}) => ({
                 url: `/goods/${good.id}`,
                 method: 'PUT',
                 body: good,
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
             }),
             invalidatesTags: ['Good']
         }),
-        deleteGood: build.mutation<Good, Good>({
-            query: (good) => ({
+        deleteGood: build.mutation<Good, {good: Good, accessToken: string}>({
+            query: ({good, accessToken}) => ({
                 url: `/goods/${good.id}`,
                 method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
             }),
             invalidatesTags: ['Good']
         })

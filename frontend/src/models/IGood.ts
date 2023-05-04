@@ -4,3 +4,7 @@ export interface Good {
     price : number;
     description : string;
 }
+
+export interface Goods {
+    goods: Good[];
+}
