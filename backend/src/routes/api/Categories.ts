@@ -21,7 +21,7 @@ router.route('/')
     .get(goodsController._getAllCategories.bind(goodsController))
     .post(verifyRoles(ROLES_LIST.ADMIN, ROLES_LIST.EDITOR), goodsController._createNewCategory.bind(goodsController))
     .put(verifyRoles(ROLES_LIST.ADMIN, ROLES_LIST.EDITOR), goodsController._updateCategory.bind(goodsController))
-    .delete(verifyRoles(ROLES_LIST.ADMIN), goodsController._deleteCategory.bind(goodsController));
+    .delete(goodsController._deleteCategory.bind(goodsController));
 
 router.route('/:id')
     .get(goodsController._getCategory.bind(goodsController))

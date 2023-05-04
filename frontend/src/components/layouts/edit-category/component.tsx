@@ -37,7 +37,6 @@ const EditCategory: React.FC<EditCategoryProps> = ({id}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isSuccess]);
     
-
     return (
         <div>
             {

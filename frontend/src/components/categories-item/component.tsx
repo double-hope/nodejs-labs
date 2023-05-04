@@ -1,15 +1,34 @@
-import React, {MouseEvent} from 'react';
+import React, { MouseEvent, useContext, useEffect } from 'react';
 import { CategoriesItemProps } from './types';
 import { GoodItem } from '../good-item';
 import styles from './styles.module.scss';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBucket } from '@fortawesome/free-solid-svg-icons';
+import { AuthContext } from '@/context';
+import { categoryAPI } from '@/services';
 
 const CategoriesItem: React.FC<CategoriesItemProps> = ({name, description, goods, id}) => {
+
+  const { user } = useContext(AuthContext);
+  const [deleteCategory, { isSuccess }] = categoryAPI.useDeleteCategoryMutation();
+
+  const handleDelete = async (e: MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+
+    await deleteCategory({id, accessToken: user?.accessToken ?? ''});
+  }
 
   return (
     <div className={styles.categoryWrapper}>
       <div>
-        <h1><Link href={`/categories/edit/${id}`}>{name}</Link></h1>
+        <div className={styles.controlCategory}>
+          <h1><Link href={`/categories/edit/${id}`}>{name}</Link></h1>
+          <div onClick={handleDelete}>
+            <FontAwesomeIcon icon={faBucket} />
+          </div>
+        </div>
+        
         <p>{description}</p>
       </div>
         
