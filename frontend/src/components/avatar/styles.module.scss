@@ -17,6 +17,11 @@
         height: 100px;
     }
 
+    &[image-size='x_large'] {
+        width: 300px;
+        height: 300px;
+    }
+
     & img {
         width: 100%;
         height: 100%;

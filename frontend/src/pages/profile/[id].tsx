@@ -1,10 +1,11 @@
-import { DefaultLayout } from '@/components';
-import React from 'react'
+import { DefaultLayout, Profile } from '@/components';
+import React from 'react';
 
 const ProfilePage = () => {
+
   return (
     <DefaultLayout>
-        Your profile
+        <Profile />
     </DefaultLayout>
   )
 }

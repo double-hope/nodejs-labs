@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styles from './styles.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -8,11 +8,23 @@ import { HeaderProps } from './types';
 import { SideNavigation } from '../side-navigation';
 import { NavigationItem } from '../primitives';
 import { AuthContext } from '@/context';
+import { useGetUser } from '@/hooks';
+import jwtDecode from 'jwt-decode';
 
 const Header: React.FC<HeaderProps> = () => {
+
+  useGetUser();
   const [nav, setNav] = useState(false);
   const { user } = useContext(AuthContext);
+  const [token, setToken] = useState('');
 
+  useEffect(() => {
+    if(user) {
+      setToken(jwtDecode(user.accessToken));
+    }
+  }, [user]);
+  
+  
   return (
     <header className={styles.header}>
       <div onClick={() => setNav(true)} className={styles.menu}>
@@ -24,7 +36,7 @@ const Header: React.FC<HeaderProps> = () => {
       <SideNavigation opened={nav} setOpened={setNav}>
         <NavigationItem content='All categories' href='/categories' />
         <NavigationItem content='All goods' href='/goods' />
-        <NavigationItem content='My profile' href={`/profile/${user?.name}`} />
+        <NavigationItem content='My profile' href={`/profile/${token?.UserInfo?.id}`} />
         <NavigationItem content='Logout' href='/categories' />
       </SideNavigation>
     </header>
