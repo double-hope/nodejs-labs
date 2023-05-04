@@ -2,9 +2,14 @@ import {type Good} from './IGood';
 
 export interface Category {
     id: string;
-    name : string;
+    name: string;
     description: string;
-    goods : Good[];
+    goods?: Good[] | [];
+}
+
+export interface UpdateCategory {
+    name: string;
+    description: string;
 }
 
 export interface Categories {

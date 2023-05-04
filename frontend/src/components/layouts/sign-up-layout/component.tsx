@@ -36,8 +36,8 @@ const SignUpLayout = () => {
                 user: {
                     name: data.user.name,
                     email: data.user.email,
+                    accessToken: '',
                 },
-                accessToken: '',
             });
 
             router.push('/categories');

@@ -1,5 +1,4 @@
 import { DefaultLayout, GoodsItem, Loader } from '@/components';
-import { Good } from '@/models';
 import { NextPage } from 'next';
 import React, { useContext } from 'react';
 import { AuthContext } from '@/context';

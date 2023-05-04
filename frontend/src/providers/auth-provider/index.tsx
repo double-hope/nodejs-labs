@@ -13,9 +13,8 @@ type User = {
 
 const AuthProvider = ({ children }: ProviderProps) => {
 
-    const [auth, setAuth] = useState<{ user: User | null, accessToken: string }>({
+    const [auth, setAuth] = useState<{ user: User | null }>({
         user: null,
-        accessToken: '',
     });
 
     return (

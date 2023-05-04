@@ -18,7 +18,7 @@ const CategoriesPage: NextPage = () => {
         {
         data
         ? data?.categories.map((category: Category, key: number) => 
-          <CategoriesItem name={category.name} description={category.description} goods={category.goods} key={key} />
+          <CategoriesItem name={category.name} description={category.description} goods={category.goods} key={key} id={+category.id} />
         )
           
         : <Loader />

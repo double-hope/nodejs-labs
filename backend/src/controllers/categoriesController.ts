@@ -18,10 +18,10 @@ class Category {
     }
     
     public _getCategory(req: Request, res: Response) {
-        const category = this.data.categories.find(category => category.id === req.body.id);
+        const category = this.data.categories.find(category => category.id === req.params.id);
         
         if(!category)
-            return res.status(400).json({'message': `ID ${req.body.id} was not found`});
+            return res.status(400).json({'message': `ID ${req.params.id} was not found`});
             
         res.json(category);
     }

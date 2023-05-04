@@ -10,7 +10,6 @@ type AuthContextValue = {
     user: User | null;
     setAuth: React.Dispatch<React.SetStateAction<{
         user: User | null;
-        accessToken: string;
     }>>;
 };
 

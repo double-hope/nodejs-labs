@@ -37,8 +37,8 @@ const SignInLayout = () => {
                 user: {
                     name: data.user.name,
                     email: data.user.email,
+                    accessToken: data.accessToken,
                 },
-                accessToken: data.accessToken,
             });
             
             router.push('/categories');
