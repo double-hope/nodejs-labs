@@ -1,10 +1,11 @@
+import { Roles } from '@/common';
 import { createContext } from 'react';
 
 type User = {
     name: string;
     email: string;
     accessToken: string;
-    roles: [];
+    roles: Roles[] | [];
   };
   
 type AuthContextValue = {

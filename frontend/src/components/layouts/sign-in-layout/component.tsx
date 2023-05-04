@@ -37,7 +37,7 @@ const SignInLayout = () => {
 
     useEffect(() => {
          
-        if(isSuccess) {
+        if(isSuccess) {            
             const decoded = jwtDecode(data.accessToken);
 
             setAuth({
@@ -57,7 +57,7 @@ const SignInLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isSuccess]);
     
-    useEffect(() => {
+    useEffect(() => {        
         if(user?.accessToken) {            
             router.push('/categories');
         }

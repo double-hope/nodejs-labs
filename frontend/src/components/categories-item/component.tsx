@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBucket } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '@/context';
 import { categoryAPI } from '@/services';
+import { Roles } from '@/common';
 
 const CategoriesItem: React.FC<CategoriesItemProps> = ({name, description, goods, id}) => {
 
@@ -15,8 +16,7 @@ const CategoriesItem: React.FC<CategoriesItemProps> = ({name, description, goods
 
   const handleDelete = async (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-
-    await deleteCategory({id, accessToken: user?.accessToken ?? '', roles: user?.roles ?? []});
+    if(user?.roles.includes(Roles.ADMIN)) await deleteCategory({id, accessToken: user?.accessToken ?? '', roles: user?.roles ?? []});
   }
 
   return (

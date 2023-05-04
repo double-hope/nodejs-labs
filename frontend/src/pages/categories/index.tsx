@@ -1,4 +1,5 @@
-import { CategoriesItem, DefaultLayout, IconifyLink, Loader } from '@/components';
+import { Roles } from '@/common';
+import { AuthLayout, CategoriesItem, DefaultLayout, IconifyLink, Loader } from '@/components';
 import { AuthContext } from '@/context';
 import { Category } from '@/models';
 import { categoryAPI } from '@/services';
@@ -13,18 +14,21 @@ const CategoriesPage: NextPage = () => {
   
   return (
     <DefaultLayout>
-      <IconifyLink href={'/categories/add'}/>
-      <>
-        {
-        data
-        ? data?.categories.map((category: Category, key: number) => 
-          <CategoriesItem name={category.name} description={category.description} goods={category?.goods} key={key} id={category.id} />
-        )
-          
-        : <Loader />
-          
-      }
-      </>
+      <AuthLayout allowedRoles={[Roles.ADMIN, Roles.EDITOR, Roles.USER]}>
+        <IconifyLink href={'/categories/add'}/>
+          <>
+            {
+            data
+            ? data?.categories.map((category: Category, key: number) => 
+              <CategoriesItem name={category.name} description={category.description} goods={category?.goods} key={key} id={category.id} />
+            )
+              
+            : <Loader />
+              
+          }
+          </>
+      </AuthLayout>
+      
     </DefaultLayout>
   )
 }

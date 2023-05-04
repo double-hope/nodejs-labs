@@ -4,3 +4,4 @@ export * from './sign-up-layout';
 export * from './edit-category';
 export * from './add-category';
 export * from './profile-layout';
+export * from './auth-layout';

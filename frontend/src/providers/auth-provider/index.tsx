@@ -1,3 +1,4 @@
+import { Roles } from '@/common';
 import { AuthContext } from '@/context/auth';
 import React, { ReactNode, useState } from 'react';
 
@@ -9,7 +10,7 @@ type User = {
     name: string;
     email: string;
     accessToken: string;
-    roles: [];
+    roles: Roles[] | [];
 };
 
 const AuthProvider = ({ children }: ProviderProps) => {

@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = () => {
         <NavigationItem content='All categories' href='/categories' />
         <NavigationItem content='All goods' href='/goods' />
         <NavigationItem content='My profile' href={`/profile/${token?.UserInfo?.id}`} />
-        <NavigationItem content='Logout' href='/categories' />
+        <NavigationItem content='Logout' href='/logout' />
       </SideNavigation>
     </header>
   )
