@@ -3,6 +3,7 @@ import { getCookie } from '@/helpers';
 import { profileAPI } from '@/services';
 import { useContext, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
+import { DecodedToken } from '@/models/IDecodedUser';
 
 const useGetUser = async () => {
 
@@ -24,7 +25,7 @@ const useGetUser = async () => {
     useEffect(() => {
         if(isSuccess) {
 
-            const decoded = jwtDecode(data?.accessToken);
+            const decoded: DecodedToken = jwtDecode(data?.accessToken);
             setAuth({
                 user: {
                     name: data?.user?.name,
