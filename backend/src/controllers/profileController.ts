@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 
-class Auth {
+class Profile {
     private userDB: UsersApiDto;
     private fsPromises: typeof fs.promises;
 
@@ -22,17 +22,13 @@ class Auth {
         dotenv.config();
     }
 
-    async _login(req: Request, res: Response) {
-        const { email, password } = req.body;
+    async _getProfile(req: Request, res: Response) {
+        const { id, auth } = req.body;
 
-        if(!email || !password) 
-            return res.status(400).json({'message': 'Email and password are required'});
-
-        const foundUser = this.userDB.users.find(user => user.email === email);
+        const foundUser = this.userDB.users.find(user => user.id === id);
         if(!foundUser) return res.sendStatus(401);
 
-        const match = await bcrypt.compare(password, foundUser.password);
-        if(match) {
+        if(auth) {
             const roles = foundUser.roles;
             const accessToken = jwt.sign(
                 { 
@@ -67,4 +63,4 @@ class Auth {
     }
 }
 
-export { Auth };
+export { Profile };

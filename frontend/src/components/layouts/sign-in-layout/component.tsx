@@ -5,14 +5,18 @@ import { useAuthUserMutation } from '@/services';
 import { AuthUser } from '@/models';
 import { useRouter } from "next/router";
 import { AuthContext } from '@/context';
+import Link from 'next/link';
+import { useGetUser } from '@/hooks';
 
 const SignInLayout = () => {
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
+    
+    useGetUser();
 
-    const { setAuth } = useContext(AuthContext);
+    const { user, setAuth } = useContext(AuthContext);
 
     const [authUser, { isSuccess, data }] = useAuthUserMutation();
     
@@ -40,12 +44,21 @@ const SignInLayout = () => {
                     accessToken: data.accessToken,
                 },
             });
+
+            document.cookie = `userId=${data.user.id}`;
+            document.cookie = `auth=${true}`;
             
             router.push('/categories');
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isSuccess]);
     
+    useEffect(() => {
+        if(user?.accessToken) {            
+            router.push('/categories');
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user]);
 
     return (
         <div className={styles.layout}>
@@ -54,6 +67,8 @@ const SignInLayout = () => {
                 <Input type='password' value={password} setValue={setPassword} label={'Password'} placeholder='Your password' />
                 <Button text='Sign in' />
             </form>
+            <p>Do not have an account?</p> 
+            <Link href='/sign-up'>Sign up</Link>
         </div>
     )
 }

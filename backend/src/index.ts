@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
 import { errorHandler, verifyJWT, credentials } from './middlewares';
-import { auth, logout, refresh, register, root } from './routes';
+import { auth, logout, profile, refresh, register, root } from './routes';
 import { categories, goods } from './routes/api';
 import { corsOptions } from './config';
 import cookieParser from 'cookie-parser';
@@ -28,6 +28,7 @@ app.use('/register', register);
 app.use('/auth', auth);
 app.use('/refresh', refresh);
 app.use('/logout', logout);
+app.use('/profile', profile);
 
 // app.use(verifyJWT);
 app.use('/goods', goods);

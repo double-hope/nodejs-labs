@@ -1,11 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { categoryAPI, goodAPI, authAPI, registerAPI } from "@/services";
+import { categoryAPI, goodAPI, authAPI, registerAPI, profileAPI } from "@/services";
 
 const rootReducer = combineReducers({
     [goodAPI.reducerPath]: goodAPI.reducer,
     [categoryAPI.reducerPath]: categoryAPI.reducer,
     [authAPI.reducerPath]: authAPI.reducer,
     [registerAPI.reducerPath]: registerAPI.reducer,
+    [profileAPI.reducerPath]: profileAPI.reducer,
 });
 
 export const setupStore = () => {
@@ -16,7 +17,8 @@ export const setupStore = () => {
                 .concat(goodAPI.middleware)
                 .concat(categoryAPI.middleware)
                 .concat(authAPI.middleware)
-                .concat(registerAPI.middleware),
+                .concat(registerAPI.middleware)
+                .concat(profileAPI.middleware),
     })
 }
 

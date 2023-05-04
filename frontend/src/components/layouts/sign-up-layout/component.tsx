@@ -5,6 +5,8 @@ import { useRegisterUserMutation } from '@/services';
 import { RegisterUser } from '@/models/IRegisterUser';
 import { useRouter } from "next/router";
 import { AuthContext } from '@/context';
+import Link from 'next/link';
+import { useGetUser } from '@/hooks';
 
 const SignUpLayout = () => {
     
@@ -13,7 +15,9 @@ const SignUpLayout = () => {
     const [password, setPassword] = useState('');
     const router = useRouter();
 
-    const { setAuth } = useContext(AuthContext);
+    useGetUser();
+
+    const { user, setAuth } = useContext(AuthContext);
 
     const [registerUser, { isSuccess, data }] = useRegisterUserMutation();
 
@@ -40,10 +44,17 @@ const SignUpLayout = () => {
                 },
             });
 
-            router.push('/categories');
+            router.push('/sign-in');
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isSuccess]);
+
+    useEffect(() => {
+        if(user?.accessToken) {            
+            router.push('/categories');
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user]);
 
     return (
         <div className={styles.layout}>
@@ -53,6 +64,8 @@ const SignUpLayout = () => {
                 <Input type='password' value={password} setValue={setPassword} label={'Password'} placeholder='Your password' />
                 <Button text='Sign up' />
             </form>
+            <p>Already have an account?</p> 
+            <Link href='/sign-in'>Sign in</Link>
         </div>
     )
 }
