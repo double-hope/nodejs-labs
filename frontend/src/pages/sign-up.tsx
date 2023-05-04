@@ -1,8 +1,11 @@
+import { SignUpLayout } from '@/components';
 import React from 'react'
 
 const SignUpPage = () => {
   return (
-    <div>SignInPage</div>
+    <React.Fragment>
+        <SignUpLayout />
+    </React.Fragment>
   )
 }
 

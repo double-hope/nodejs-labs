@@ -5,7 +5,7 @@ import React from 'react';
 
 export const getStaticProps: GetStaticProps = async (context) => {
 
-    const res = await fetch('http://localhost:3002/goods');
+    const res = await fetch('http://localhost:3030/goods');
     const goods: Good[] = await res.json();
 
     return {

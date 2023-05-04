@@ -5,7 +5,7 @@ import React from 'react';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   
-  const res = await fetch('http://localhost:3002/categories');
+  const res = await fetch('http://localhost:3030/categories');
   const categories: Category[] = await res.json();
 
   return {

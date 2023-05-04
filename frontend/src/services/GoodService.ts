@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 export const goodAPI = createApi({
     reducerPath: 'goodAPI',
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3001'}),
+    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3030'}),
     tagTypes: ['Good'],
     endpoints: (build) => ({
         fetchAllGoods: build.query<Good[], number>({
