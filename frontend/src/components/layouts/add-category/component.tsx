@@ -5,6 +5,7 @@ import { Button, Input } from '@/components/primitives';
 import { CreateCategory } from '@/models';
 import { useRouter } from "next/router";
 import { useGetUser } from '@/hooks';
+import styles from './styles.module.scss';
 
 const AddCategory: React.FC = () => {
     useGetUser();
@@ -38,9 +39,9 @@ const AddCategory: React.FC = () => {
     return (
         <div>
             {
-                <form onSubmit={handleSubmit}>
-                    <Input label='Name' type='text' value={name} setValue={setName} />
-                    <Input label='Description' type='text' value={description} setValue={setDescription}  />
+                <form onSubmit={handleSubmit} className={styles.form}>
+                    <Input label='Name' type='text' value={name} setValue={setName} placeholder='Category name' />
+                    <Input label='Description' type='text' value={description} setValue={setDescription} placeholder='Category description'  />
                     <Button text='Submit' />
                 </form>
             }

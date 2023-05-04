@@ -5,6 +5,7 @@ import { categoryAPI } from '@/services';
 import { Button, Input, Loader } from '@/components/primitives';
 import { UpdateCategory } from '@/models';
 import { useRouter } from "next/router";
+import styles from './styles.module.scss';
 
 const EditCategory: React.FC<EditCategoryProps> = ({id}) => {
 
@@ -39,9 +40,9 @@ const EditCategory: React.FC<EditCategoryProps> = ({id}) => {
         <div>
             {
                 data
-                ?   <form onSubmit={handleSubmit}>
-                        <Input type='text' value={name} setValue={setName} />
-                        <Input type='text' value={description} setValue={setDescription}  />
+                ?   <form onSubmit={handleSubmit} className={styles.form}>
+                        <Input label='Name of category' type='text' value={name} setValue={setName} />
+                        <Input label='Description of category' type='text' value={description} setValue={setDescription}  />
                         <Button text='Submit' />
                     </form>
                 : <Loader />

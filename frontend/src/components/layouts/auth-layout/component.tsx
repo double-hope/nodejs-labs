@@ -6,12 +6,18 @@ import { AuthContext } from '@/context';
 import { Loader } from '@/components/primitives';
 import { getCookie } from '@/helpers';
 import { useRouter } from 'next/router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({allowedRoles, children}) => {
+    
+    const notify = () => toast.error('Not allowed!', {
+        position: toast.POSITION.TOP_RIGHT
+    });
 
     useGetUser();
     const { user } = useContext(AuthContext);
-    const [allowed, setAllowed] = useState(false);
+    const [allowed, setAllowed] = useState(true);
     const router = useRouter();
 
     useEffect(() => {
@@ -24,6 +30,10 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({allowedRoles, children}) => {
         if (getCookie('userId') === 'null') router.push('sign-in');
     }, []);
 
+    useEffect(() => {
+        if(!allowed) notify();
+    }, [allowed]);
+
     return (
         <>
             {
@@ -32,7 +42,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({allowedRoles, children}) => {
                 <>
                     {allowed
                     ? <>{children}</>
-                    : <p>Not allowed!</p>
+                    : <ToastContainer />
                     }
                 </> 
                 : <Loader />
