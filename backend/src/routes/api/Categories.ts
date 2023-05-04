@@ -7,17 +7,6 @@ const router = Router();
 const goodsController = new Category();
 
 router.route('/')
-    /**
-     * @swagger
-     * components:
-     *   schemas:
-     *     Categories:
-     *       type: object
-     *       required:
-     *         - id
-     *         - name
-     * 
-     */
     .get(goodsController._getAllCategories.bind(goodsController))
     .post(verifyRoles(ROLES_LIST.ADMIN, ROLES_LIST.EDITOR), goodsController._createNewCategory.bind(goodsController))
     .put(verifyRoles(ROLES_LIST.ADMIN, ROLES_LIST.EDITOR), goodsController._updateCategory.bind(goodsController))

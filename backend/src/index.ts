@@ -8,14 +8,14 @@ import { categories, goods } from './routes/api';
 import { corsOptions } from './config';
 import cookieParser from 'cookie-parser';
 import swaggerUi from 'swagger-ui-express';
-import { swaggerSpec } from './utils/swagger';
+const docs = require('./docs');
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3001;
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(docs));
 app.use(credentials);
 app.use(cors(corsOptions));
 app.use(express.json());
