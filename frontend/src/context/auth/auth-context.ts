@@ -5,7 +5,7 @@ type User = {
     name: string;
     email: string;
     accessToken: string;
-    roles: Roles[] | [];
+    roles: Roles[] | null;
   };
   
 type AuthContextValue = {

@@ -8,6 +8,7 @@ import { AuthContext } from '@/context';
 import Link from 'next/link';
 import { useGetUser } from '@/hooks';
 import jwtDecode from 'jwt-decode';
+import { DecodedToken } from '@/models/IDecodedUser';
 
 const SignInLayout = () => {
     
@@ -38,7 +39,7 @@ const SignInLayout = () => {
     useEffect(() => {
          
         if(isSuccess) {            
-            const decoded = jwtDecode(data.accessToken);
+            const decoded: DecodedToken = jwtDecode(data.accessToken);
 
             setAuth({
                 user: {

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthLayoutProps } from './types';
 import { useGetUser } from '@/hooks';
@@ -15,7 +16,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({allowedRoles, children}) => {
 
     useEffect(() => {
         if(user)
-            setAllowed(allowedRoles.some((role) => user.roles.includes(role)));
+            setAllowed(allowedRoles.some((role) => user.roles && user.roles.includes(role)));
             
     }, [user]);
 

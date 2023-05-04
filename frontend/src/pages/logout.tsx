@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Loader } from '@/components';
 import { logoutAPI } from '@/services';
 import React, { useContext, useEffect } from 'react';

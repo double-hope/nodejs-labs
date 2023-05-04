@@ -1,3 +1,4 @@
+import { Roles } from '@/common';
 import { Good, Goods } from '@/models';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
@@ -15,7 +16,7 @@ export const goodAPI = createApi({
             }),
             providesTags: result => ['Good']
         }),
-        createGood: build.mutation<Good, {good: Good, accessToken: string, roles: []}>({
+        createGood: build.mutation<Good, {good: Good, accessToken: string, roles: Roles[]}>({
             query: ({good, accessToken, roles}) => ({
                 url: '/goods',
                 method: 'POST',
@@ -31,7 +32,7 @@ export const goodAPI = createApi({
             }),
             invalidatesTags: ['Good']
         }),
-        updateGood: build.mutation<Good, {good: Good, accessToken: string, roles: []}>({
+        updateGood: build.mutation<Good, {good: Good, accessToken: string, roles: Roles[]}>({
             query: ({good, accessToken, roles}) => ({
                 url: `/goods`,
                 method: 'PUT',
@@ -48,7 +49,7 @@ export const goodAPI = createApi({
             }),
             invalidatesTags: ['Good']
         }),
-        deleteGood: build.mutation<Good, {good: Good, accessToken: string, roles: []}>({
+        deleteGood: build.mutation<Good, {good: Good, accessToken: string, roles: Roles[]}>({
             query: ({good, accessToken, roles}) => ({
                 url: `/goods`,
                 method: 'DELETE',

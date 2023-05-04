@@ -1,3 +1,4 @@
+import { Roles } from '@/common';
 import { Categories, Category, CreateCategory, UpdateCategory } from '@/models';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
@@ -24,7 +25,7 @@ export const categoryAPI = createApi({
             }),
             providesTags: result => ['Category']
         }),
-        createCategory: build.mutation<Category, {category: CreateCategory, accessToken: string, roles: []}>({
+        createCategory: build.mutation<Category, {category: CreateCategory, accessToken: string, roles: Roles[]}>({
             query: ({category, accessToken, roles}) => ({
               url: '/categories',
               method: 'POST',
@@ -39,7 +40,7 @@ export const categoryAPI = createApi({
             }),
             invalidatesTags: ['Category']
         }),
-        updateCategory: build.mutation<Category, {id: string, category: UpdateCategory, accessToken: string, roles: []}>({
+        updateCategory: build.mutation<Category, {id: string, category: UpdateCategory, accessToken: string, roles: Roles[]}>({
             query: ({id, category, accessToken, roles}) => ({
                 url: `/categories`,
                 method: 'PUT',
@@ -55,7 +56,7 @@ export const categoryAPI = createApi({
             }),
             invalidatesTags: ['Category']
         }),
-        deleteCategory: build.mutation<Category, {id: string, accessToken: string, roles: []}>({
+        deleteCategory: build.mutation<Category, {id: string, accessToken: string, roles: Roles[]}>({
             query: ({id, accessToken, roles}) => ({
                 url: `/categories`,
                 method: 'DELETE',

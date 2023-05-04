@@ -10,13 +10,14 @@ import { NavigationItem } from '../primitives';
 import { AuthContext } from '@/context';
 import { useGetUser } from '@/hooks';
 import jwtDecode from 'jwt-decode';
+import { DecodedToken } from '@/models/IDecodedUser';
 
 const Header: React.FC<HeaderProps> = () => {
 
   useGetUser();
   const [nav, setNav] = useState(false);
   const { user } = useContext(AuthContext);
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState<DecodedToken>();
 
   useEffect(() => {
     if(user) {
