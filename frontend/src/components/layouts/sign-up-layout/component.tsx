@@ -35,25 +35,16 @@ const SignUpLayout = () => {
     }
 
     useEffect(() => { 
-        if(isSuccess) {
-            setAuth({
-                user: {
-                    name: data.user.name,
-                    email: data.user.email,
-                    accessToken: '',
-                    roles: [],
-                },
-            });
-
+        if(isSuccess) 
             router.push('/sign-in');
-        }
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isSuccess]);
 
     useEffect(() => {
-        if(user?.accessToken) {            
+        if(user?.accessToken)        
             router.push('/categories');
-        }
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
 
