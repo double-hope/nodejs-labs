@@ -18,7 +18,6 @@ const AddCategory: React.FC = () => {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(user);
         
         const category: CreateCategory = {
             name,
@@ -29,8 +28,7 @@ const AddCategory: React.FC = () => {
 
     }
 
-    useEffect(() => {   
-        console.log(isSuccess);
+    useEffect(() => {
              
       if(isSuccess) router.push('/categories');
 

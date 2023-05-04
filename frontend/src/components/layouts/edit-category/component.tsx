@@ -29,9 +29,7 @@ const EditCategory: React.FC<EditCategoryProps> = ({id}) => {
 
     }
 
-    useEffect(() => {   
-        console.log(isSuccess);
-             
+    useEffect(() => {                
       if(isSuccess) router.push('/categories');
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
