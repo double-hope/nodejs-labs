@@ -1,6 +1,6 @@
 module.exports = {
     put: {
-        tags: ["Category CRUD Operations"],
+        tags: ["Category CRUD operations"],
         description: "Update category",
         operationId: "updateCategory",
         parameters: [

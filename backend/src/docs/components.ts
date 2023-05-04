@@ -6,26 +6,6 @@ module.exports = {
           description: "An id of an object",
           example: "1",
         },
-        Object: {
-          type: "object",
-          properties: {
-            id: {
-              type: "string",
-              description: "Object identification number",
-              example: "3",
-            },
-            title: {
-              type: "string",
-              description: "Object's title",
-              example: "Object",
-            },
-            description:{
-              type: "string",
-              description: "Object's description",
-              example: "nice object, pretty well"
-            }
-          },
-        },
         Category: {
           type: "object",
           properties: {
@@ -44,7 +24,7 @@ module.exports = {
               description: "Category's description",
               example: "category with komps"
             },
-
+            goods: []
           },
         },
         Good: {
@@ -61,7 +41,7 @@ module.exports = {
               example: "komp1",
             },
             price:{
-              type: 'int',
+              type: 'number',
               description: "Good's price",
               example: 500
             },

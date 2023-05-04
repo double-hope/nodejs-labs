@@ -30,6 +30,13 @@ const EditCategory: React.FC<EditCategoryProps> = ({id}) => {
 
     }
 
+    useEffect(() => {
+        if(data) {
+            setName(data.name);
+            setDescription(data.description);
+        }
+    }, [data]);
+
     useEffect(() => {                
       if(isSuccess) router.push('/categories');
 

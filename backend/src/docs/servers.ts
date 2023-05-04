@@ -1,7 +1,7 @@
 module.exports = {
     servers: [
       {
-        url: "http://localhost:3030/categories",
+        url: "http://localhost:3030",
         description: "Local server",
       },
     ],

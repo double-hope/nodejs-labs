@@ -1,6 +1,6 @@
 module.exports = {
     get: {
-        tags: ["Category CRUD Operations"],
+        tags: ["Category CRUD operations"],
         description: "Get categories",
         operationId: "getCategories",
         parameters: [],

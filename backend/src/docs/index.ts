@@ -2,7 +2,6 @@ const basicInfo = require('./basicInfo');
 const servers = require('./servers');
 const components = require('./components');
 const tags = require('./tags');
-const todos = require('./todos');
 const categories = require('./categories');
 const goods = require('./goods');
 
@@ -11,7 +10,6 @@ module.exports = {
     ...servers,
     ...components,
     ...tags,
-    ...todos,
+    ...goods,
     ...categories,
-    ...goods, //hides categories
 };

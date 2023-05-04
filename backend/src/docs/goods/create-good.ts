@@ -1,6 +1,6 @@
 module.exports = {
     post: {
-        tags: ["Goods CRUD Operations"],
+        tags: ["Goods CRUD operations"],
         description: "Create good",
         operationId: "createGood",
         parameters: [],

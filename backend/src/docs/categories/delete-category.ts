@@ -1,6 +1,6 @@
 module.exports = {
     delete: {
-        tags: ["Category CRUD Operations"],
+        tags: ["Category CRUD operations"],
         description: "Deleting category",
         operationId: "deleteCategory",
         parameters: [],
@@ -14,14 +14,11 @@ module.exports = {
             },
         },
         responses: {
-            201: {
+            200: {
                 description: "Category was deleted successfully",
             },
-            404:{
-              description: "Category was not found",
-            },
-            500: {
-                description: "Server error",
+            400:{
+              description: "ID was not found",
             },
         },
     },
