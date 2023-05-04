@@ -35,7 +35,7 @@ const CategoriesItem: React.FC<CategoriesItemProps> = ({name, description, goods
       </div>
         
       <div className={styles.goodsWrapper}>
-        {
+        {goods &&
           goods.map((good, key) => 
             <GoodItem key={key} name={good.name} description={good.description} price={good.price} />
           )
