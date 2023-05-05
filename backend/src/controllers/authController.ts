@@ -29,7 +29,7 @@ class Auth {
             return res.status(400).json({'message': 'Email and password are required'});
 
         const foundUser = this.userDB.users.find(user => user.email === email);
-        if(!foundUser) return res.sendStatus(401);
+        if(!foundUser) return res.sendStatus(404);
 
         const match = await bcrypt.compare(password, foundUser.password);
         if(match) {

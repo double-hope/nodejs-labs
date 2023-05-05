@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { UserDto } from '../dto';
 import { UsersApiDto } from '../dto/api/Users';
 import users from '../model/Users.json';
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import fs from 'fs';
@@ -26,7 +25,7 @@ class Profile {
         const { id, auth } = req.body;
 
         const foundUser = this.userDB.users.find(user => user.id === id);
-        if(!foundUser) return res.sendStatus(401);
+        if(!foundUser) return res.sendStatus(404);
 
         if(auth) {
             const roles = foundUser.roles;

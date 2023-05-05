@@ -1,13 +1,13 @@
 export default {
     tags: [
         {
-        name: "Category",
+        name: 'Category',
         },
         {
-        name: "Good",
+        name: 'Good',
         },
         {
-        name: "User",
+        name: 'User',
         },
     ],
   };

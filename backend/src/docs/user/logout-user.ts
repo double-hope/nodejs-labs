@@ -1,37 +1,45 @@
 export const logoutUser = {
     get: {
-        tags: ["User"],
-        description: "User logout",
-        operationId: "logoutUser",
+        tags: ['User'],
+        description: 'User logout',
+        operationId: 'logoutUser',
         parameters: [],
-        requestBody: {
-            content: {
-                "application/json": {
-                    schema: {
-                        $ref: "#/components/schemas/", //TODO create scheme
+        requestBody: {},
+        responses: {
+            204: {
+                description: 'Successful logout',
+            },
+            401:{
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'Error data',
+                                },
+                            },
+                        },
                     },
                 },
             },
-        },
-        responses: {
-            204: {
-                description: "Successful logot",
-            },
-            401: {
-                description: "Null User",
-                content:{
-                    "application/json":{
-                        message:"Not Found"
-                    }
-                }
-            },
             500: {
-                description: "Server Error",
-                content:{
-                    "application/json":{
-                        message:"Internal server error"
-                    }
-                }
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'Internal server error',
+                                },
+                            },
+                        },
+                    },
+                },
             },
         },
     },

@@ -29,7 +29,7 @@ class Refresh {
         const refreshToken = cookies.jwt;
 
         const foundUser = this.userDB.users.find(user => user.refreshToken === refreshToken);
-        if(!foundUser) return res.sendStatus(401);
+        if(!foundUser) return res.sendStatus(404);
 
         jwt.verify(
             refreshToken, 

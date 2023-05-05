@@ -1,45 +1,92 @@
 export const authUser = {
     post: {
-        tags: ["User"],
-        description: "Auth user",
-        operationId: "authUser",
+        tags: ['User'],
+        description: 'Auth user',
+        operationId: 'authUser',
         parameters: [],
         requestBody: {
             content: {
-                "application/json": {
+                'application/json': {
                     schema: {
-                        $ref: "#/components/schemas/", //TODO create scheme
+                        type: 'object',
+                        properties: {
+                            email: {
+                                type: 'string',
+                            },
+                            password: {
+                                type: 'string',
+                            },
+                        },
                     },
                 },
             },
         },
         responses: {
             200: {
-                description: "Category was created successfully",
-            },
-            400: {
-                description: "Empty inputs",
-                content:{
-                    "application/json":{
-                        message:"Email and password required"
-                    }
-                }
+                description: 'User was returned',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                user: {
+                                    $ref: '#/components/schemas/User',
+                                },
+                                accessToken: {
+                                    type: 'string',
+                                }                                
+                            }
+                        },
+                    },
+                },
             },
             401:{
-                description:"Null user",
-                content:{
-                    "application/json":{
-                        message:"Not found"
-                    }
-                }
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'Error data',
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+            404:{
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'User was not found',
+                                },
+                            },
+                        },
+                    },
+                },
             },
             500: {
-                description: "Server Error",
-                content:{
-                    "application/json":{
-                        message:"Internal server error"
-                    }
-                }
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'Internal server error',
+                                },
+                            },
+                        },
+                    },
+                },
             },
         },
     },

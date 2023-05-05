@@ -1,13 +1,11 @@
 export default {
-    openapi: "3.0.3",
+    openapi: '3.0.3',
     info: {
-      title: "Simple Todos API",
-      description: "A simple todos API",
-      version: "1.0.0",
+      title: 'Node.js labs API',
+      version: '1.0.0',
       contact: {
-        name: "double_hope",
-        email: "nadia.prohorchuk@gmail.com", 
-        url: "web.com", 
+        name: 'Vlad and Nadiia',
+        url: 'https://github.com/double-hope/nodejs-labs', 
       },
     },
 };

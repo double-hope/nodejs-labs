@@ -1,37 +1,92 @@
 export const getProfile = {
     post: {
-        tags: ["User"],
-        description: "User's profile",
-        operationId: "profile",
+        tags: ['User'],
+        description: 'User\'s profile',
+        operationId: 'profile',
         parameters: [],
         requestBody: {
             content: {
-                "application/json": {
+                'application/json': {
                     schema: {
-                        $ref: "#/components/schemas/", //TODO create scheme
+                        type: 'object',
+                        properties: {
+                            id: {
+                                type: 'integed',
+                            },
+                            auth: {
+                                type: 'boolean',
+                            },
+                        },
                     },
                 },
             },
         },
         responses: {
             200: {
-                description: "OK",
+                description: 'User was returned',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                user: {
+                                    $ref: '#/components/schemas/User',
+                                },
+                                accessToken: {
+                                    type: 'string',
+                                }                                
+                            }
+                        },
+                    },
+                },
             },
-            401: {
-                description: "Null User",
-                content:{
-                    "application/json":{
-                        message:"Not Found"
-                    }
-                }
+            401:{
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'Error data',
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+            404:{
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'User was not found',
+                                },
+                            },
+                        },
+                    },
+                },
             },
             500: {
-                description: "Server Error",
-                content:{
-                    "application/json":{
-                        message:"Internal server error"
-                    }
-                }
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'Internal server error',
+                                },
+                            },
+                        },
+                    },
+                },
             },
         },
     },
