@@ -91,6 +91,7 @@ export default {
           },
         },
         Role: {
+          type: 'string',
           description: 'Roles enum',
           enum: {
             ADMIN: 'ADMIN',
