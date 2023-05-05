@@ -1,6 +1,6 @@
-module.exports = {
+export const deleteGood = {
     delete: {
-        tags: ["Good CRUD operations"],
+        tags: ["Good"],
         description: "Deleting a good",
         operationId: "deleteGood",
         parameters: [],

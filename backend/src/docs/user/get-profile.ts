@@ -1,6 +1,6 @@
-module.exports = {
+export const getProfile = {
     post: {
-        tags: ["User CRUD operations"],
+        tags: ["User"],
         description: "User's profile",
         operationId: "profile",
         parameters: [],

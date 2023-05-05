@@ -1,6 +1,6 @@
-module.exports = {
+export const getCategories = {
     get: {
-        tags: ["Category CRUD operations"],
+        tags: ["Category"],
         description: "Get categories",
         operationId: "getCategories",
         parameters: [],

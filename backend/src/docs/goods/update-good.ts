@@ -1,6 +1,6 @@
-module.exports = {
+export const updateGood = {
     put: {
-        tags: ["Good CRUD operations"],
+        tags: ["Good"],
         description: "Update good",
         operationId: "updateGood",
         parameters: [

@@ -1,6 +1,6 @@
-module.exports = {
+export const logoutUser = {
     get: {
-        tags: ["User CRUD operations"],
+        tags: ["User"],
         description: "User logout",
         operationId: "logoutUser",
         parameters: [],

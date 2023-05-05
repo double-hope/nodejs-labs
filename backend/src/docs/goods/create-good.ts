@@ -1,6 +1,6 @@
-module.exports = {
+export const createGood = {
     post: {
-        tags: ["Good CRUD operations"],
+        tags: ["Good"],
         description: "Create good",
         operationId: "createGood",
         parameters: [],

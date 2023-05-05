@@ -8,7 +8,7 @@ import { categories, goods } from './routes/api';
 import { corsOptions } from './config';
 import cookieParser from 'cookie-parser';
 import swaggerUi from 'swagger-ui-express';
-const docs = require('./docs');
+import docs from './docs';
 
 dotenv.config();
 

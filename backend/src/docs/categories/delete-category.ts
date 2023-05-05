@@ -1,6 +1,6 @@
-module.exports = {
+export const deleteCategory = {
     delete: {
-        tags: ["Category CRUD operations"],
+        tags: ["Category"],
         description: "Deleting category",
         operationId: "deleteCategory",
         parameters: [],

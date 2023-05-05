@@ -1,6 +1,6 @@
-module.exports = {
+export const createCategory = {
     post: {
-        tags: ["Category CRUD operations"],
+        tags: ["Category"],
         description: "Create Category",
         operationId: "createCategory",
         parameters: [],

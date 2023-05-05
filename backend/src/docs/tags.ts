@@ -1,13 +1,13 @@
-module.exports = {
+export default {
     tags: [
         {
-        name: "Category CRUD operations",
+        name: "Category",
         },
         {
-        name: "Good CRUD operations",
+        name: "Good",
         },
         {
-        name: "User CRUD operations",
+        name: "User",
         },
     ],
   };

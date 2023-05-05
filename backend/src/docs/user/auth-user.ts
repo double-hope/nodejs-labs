@@ -1,6 +1,6 @@
-module.exports = {
+export const authUser = {
     post: {
-        tags: ["User CRUD operations"],
+        tags: ["User"],
         description: "Auth user",
         operationId: "authUser",
         parameters: [],

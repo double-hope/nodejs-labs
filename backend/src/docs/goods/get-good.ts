@@ -1,6 +1,6 @@
-module.exports = {
+export const getGood = {
     get: {
-        tags: ["Good CRUD operations"],
+        tags: ["Good"],
         description: "Get a good",
         operationId: "getGood",
         parameters: [

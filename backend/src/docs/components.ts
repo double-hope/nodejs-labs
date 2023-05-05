@@ -1,11 +1,6 @@
-module.exports = {
+export default {
     components: {
       schemas: {
-        id: {
-          type: "integer",
-          description: "An id of an object",
-          example: 1,
-        },
         Category: {
           type: "object",
           properties: {

@@ -1,13 +1,13 @@
-const basicInfo = require('./basicInfo');
-const servers = require('./servers');
-const components = require('./components');
-const tags = require('./tags');
-const items = require('./connector');
+import basicInfo from './basicInfo';
+import servers from './servers';
+import components from './components';
+import tags from './tags';
+import connector from './connector';
 
-module.exports = {
+export default {
     ...basicInfo,
     ...servers,
     ...components,
     ...tags,
-    ...items
+    ...connector,
 };

@@ -1,6 +1,6 @@
-module.exports = {
+export const updateCategory = {
     put: {
-        tags: ["Category CRUD operations"],
+        tags: ["Category"],
         description: "Update category",
         operationId: "updateCategory",
         parameters: [

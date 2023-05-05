@@ -1,55 +1,41 @@
-const getGood = require('./goods/get-good');
-const getGoods = require('./goods/get-goods');
-const createGood = require('./goods/create-good');
-const updateGood = require('./goods/update-good');
-const deleteGood = require('./goods/delete-good');
+import { createCategory, deleteCategory, getCategories, getCategory, updateCategory } from './categories';
+import { createGood, deleteGood, getGood, getGoods, updateGood } from './goods';
+import { authUser, getProfile, logoutUser, refreshUserToken, registerUser } from './user';
 
-const getCategory = require('./categories/get-category');
-const getCategories = require('./categories/get-categories');
-const createCategory = require('./categories/create-category');
-const updateCategory = require('./categories/update-category');
-const deleteCategory = require('./categories/delete-category');
-
-const registerUser = require('./user/register-user');
-const refreshToken = require('./user/refresh-token');
-const profile = require('./user/get-profile');
-const authUser = require('./user/auth-user');
-const logoutUser = require('./user/logout-user');
-
-module.exports = {
-    paths:{
-        '/goods':{
+export default {
+    paths: {
+        '/goods': {
             ...getGoods,
-            ...createGood
+            ...createGood,
         },
-        '/good/{id}':{
+        '/good/{id}': {
             ...getGood,
             ...updateGood,
-            ...deleteGood
+            ...deleteGood,
         },
-        '/categories':{
+        '/categories': {
             ...getCategories,
-            ...createCategory
+            ...createCategory,
         },
-        '/category/{id}':{
+        '/category/{id}': {
             ...getCategory,
             ...updateCategory,
-            ...deleteCategory
+            ...deleteCategory,
         },
-        '/register':{
-            ...registerUser
+        '/register': {
+            ...registerUser,
         },
-        '/auth':{
-            ...authUser
+        '/auth': {
+            ...authUser,
         },
-        '/refresh':{
-            ...refreshToken
+        '/refresh': {
+            ...refreshUserToken,
         },
-        '/profile':{
-            ...profile
+        '/profile': {
+            ...getProfile,
         },
-        '/logout':{
-            ...logoutUser
+        '/logout': {
+            ...logoutUser,
         }
     }
 }
