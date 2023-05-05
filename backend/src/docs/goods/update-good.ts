@@ -1,28 +1,74 @@
 export const updateGood = {
     put: {
-        tags: ["Good"],
-        description: "Update good",
-        operationId: "updateGood",
-        parameters: [
-            {
-                name: "id",
-                in: "path",
-                schema: {
-                    $ref: "#/components/schemas/id",
+        tags: ['Good'],
+        description: 'Update good',
+        operationId: 'updateGood',
+        parameters: [],
+        requestBody: {
+            content: {
+                'application/json': {
+                    schema: {
+                        type: 'object',
+                        properties: {
+                            name: {
+                                type: 'string',
+                            },
+                            description: {
+                                type: 'string',
+                            },
+                            price: {
+                                type: 'integer',
+                            },
+                        },
+                    },
                 },
-                required: true,
-                description: "Id of good to be updated",
             },
-        ],
+        },
         responses: {
-            200: {
-                description: "Good was updated successfully",
+            201: {
+                description: 'Good was updated successfully',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'array',
+                            items: {
+                                 $ref: '#/components/schemas/Category',
+                            }
+                        },
+                    },
+                },
             },
-            404: {
-                description: "Good was not found",
+            400: {
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'Name, price and description are required',
+                                },
+                            },
+                        },
+                    },
+                },
             },
             500: {
-                description: "Server error",
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'Internal server error',
+                                },
+                            },
+                        },
+                    },
+                },
             },
         },
     },

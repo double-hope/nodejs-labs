@@ -13,7 +13,7 @@ export const getCategory = {
         ],
         responses: {
             200: {
-                description: 'Success',
+                description: 'Category was returned',
                 content: {
                     'application/json': {
                         schema: {

@@ -1,27 +1,69 @@
 export const deleteGood = {
     delete: {
-        tags: ["Good"],
-        description: "Deleting a good",
-        operationId: "deleteGood",
+        tags: ['Good'],
+        description: 'Delete good',
+        operationId: 'deleteGood',
         parameters: [],
         requestBody: {
             content: {
-                "application/json": {
+                'application/json': {
                     schema: {
-                        $ref: "#/components/schemas/id",
+                        type: 'object',
+                        properties: {
+                            id: {
+                                type: 'integer',
+                                example: 1,
+                            }
+                        }
                     },
                 },
             },
         },
         responses: {
-            201: {
-                description: "Good was deleted successfully",
+            200: {
+                description: 'Good was deleted',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'array',
+                            items: {
+                                 $ref: '#/components/schemas/Good',
+                            }
+                        },
+                    },
+                },
             },
-            404:{
-                description: "Good was not found",
+            400:{
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'Id was not found',
+                                },
+                            },
+                        },
+                    },
+                },
             },
             500: {
-                description: "Server error",
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'Internal server error',
+                                },
+                            },
+                        },
+                    },
+                },
             },
         },
     },

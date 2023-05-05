@@ -21,7 +21,7 @@ export const deleteCategory = {
         },
         responses: {
             200: {
-                description: 'Success',
+                description: 'Category was deleted',
                 content: {
                     'application/json': {
                         schema: {

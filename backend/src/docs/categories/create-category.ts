@@ -23,7 +23,7 @@ export const createCategory = {
         },
         responses: {
             201: {
-                description: 'Category was created successfully',
+                description: 'Category was created',
                 content: {
                     'application/json': {
                         schema: {
@@ -44,7 +44,7 @@ export const createCategory = {
                             properties: {
                                 message: {
                                     type: 'string',
-                                    example: 'Name, price and description are required',
+                                    example: 'Name and description are required',
                                 },
                             },
                         },

@@ -1,8 +1,8 @@
 export const updateCategory = {
     put: {
-        tags: ["Category"],
-        description: "Update category",
-        operationId: "updateCategory",
+        tags: ['Category'],
+        description: 'Update category',
+        operationId: 'updateCategory',
         parameters: [],
         requestBody: {
             content: {
@@ -22,8 +22,8 @@ export const updateCategory = {
             },
         },
         responses: {
-            201: {
-                description: 'Category was created successfully',
+            200: {
+                description: 'Category was updated',
                 content: {
                     'application/json': {
                         schema: {
