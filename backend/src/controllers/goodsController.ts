@@ -18,10 +18,10 @@ class Goods {
     }
     
     public _getGood(req: Request, res: Response) {
-        const good = this.data.goods.find(good => good.id === req.body.id);
+        const good = this.data.goods.find(good => good.id === req.params.id);
         
         if(!good)
-            return res.status(400).json({'message': `ID ${req.body.id} was not found`});
+            return res.status(404).json({'message': `ID ${req.params.id} was not found`});
             
         res.json(good);
     }
@@ -46,7 +46,7 @@ class Goods {
         const good = this.data.goods.find(good => good.id === req.body.id);
 
         if(!good)
-            return res.status(400).json({'message': `ID ${req.body.id} was not found`});
+            return res.status(404).json({'message': `ID ${req.body.id} was not found`});
         
         if(req.body.name) good.name = req.body.name;
         if(req.body.price) good.price = req.body.price;
@@ -62,7 +62,7 @@ class Goods {
         const good = this.data.goods.find(good => good.id === req.body.id);
         
         if(!good)
-            return res.status(400).json({'message': `ID ${req.body.id} was not found`});
+            return res.status(404).json({'message': `ID ${req.body.id} was not found`});
         
         const filteredData = this.data.goods.filter(good => good.id !== req.body.id);
         this.data.setGoods([...filteredData]);

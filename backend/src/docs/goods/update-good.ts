@@ -38,7 +38,7 @@ export const updateGood = {
                     },
                 },
             },
-            400: {
+            404: {
                 description: 'Error',
                 content: {
                     'application/json': {

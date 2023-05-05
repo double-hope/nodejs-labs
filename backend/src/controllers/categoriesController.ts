@@ -62,7 +62,7 @@ class Category {
         const category = this.data.categories.find(category => category.id === String(req.body.id));
         
         if(!category)
-            return res.status(400).json({'message': `ID ${req.body.id} was not found`});
+            return res.status(404).json({'message': `ID ${req.body.id} was not found`});
         
         const filteredData = this.data.categories.filter(category => category.id !== String(req.body.id));
         this.data.setCategories([...filteredData]);

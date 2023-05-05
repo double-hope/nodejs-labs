@@ -33,7 +33,7 @@ export const deleteGood = {
                     },
                 },
             },
-            400:{
+            404:{
                 description: 'Error',
                 content: {
                     'application/json': {
