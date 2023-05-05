@@ -1,29 +1,59 @@
 export const getCategory = {
     get: {
-        tags: ["Category"],
-        description: "Get category",
-        operationId: "getCategory",
+        tags: ['Category'],
+        description: 'Get category',
+        operationId: 'getCategory',
         parameters: [
             {
-                name: "id",
-                in: "path",
-                schema: {
-                    $ref: "#/components/schemas/id",
-                },
+                name: 'id',
+                in: 'path',
                 required: true,
-                description: "A single category id",
+                description: 'A single category id',
             },
         ],
         responses: {
             200: {
-                description: "Category is obtained",
+                description: 'Success',
+                content: {
+                    'application/json': {
+                        schema: {
+                            $ref: '#/components/schemas/Category',
+                        },
+                    },
+                },
             },
-            404: {
-                description: "Category was not found",
+            404:{
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'Id was not found',
+                                },
+                            },
+                        },
+                    },
+                },
             },
-            500:{
-                description: "Server error"
-            }
+            500: {
+                description: 'Error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                message: {
+                                    type: 'string',
+                                    example: 'Internal server error',
+                                },
+                            },
+                        },
+                    },
+                },
+            },
         },
     },
 };

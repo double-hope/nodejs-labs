@@ -21,7 +21,7 @@ class Category {
         const category = this.data.categories.find(category => category.id === req.params.id);
         
         if(!category)
-            return res.status(400).json({'message': `ID ${req.params.id} was not found`});
+            return res.status(404).json({'message': `ID ${req.params.id} was not found`});
             
         res.json(category);
     }
@@ -46,7 +46,7 @@ class Category {
         const category = this.data.categories.find(category => category.id === req.body.id);
 
         if(!category)
-            return res.status(400).json({'message': `ID ${req.body.id} was not found`});
+            return res.status(404).json({'message': `ID ${req.body.id} was not found`});
         
         if(req.body.name) category.name = req.body.name;
         if(req.body.description) category.description = req.body.description;
