@@ -1,6 +1,6 @@
 module.exports = {
     delete: {
-        tags: ["Goods CRUD operations"],
+        tags: ["Good CRUD operations"],
         description: "Deleting a good",
         operationId: "deleteGood",
         parameters: [],

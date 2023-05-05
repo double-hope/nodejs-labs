@@ -1,6 +1,6 @@
 module.exports = {
     post: {
-        tags: ["Goods CRUD operations"],
+        tags: ["Good CRUD operations"],
         description: "Create good",
         operationId: "createGood",
         parameters: [],
@@ -21,5 +21,5 @@ module.exports = {
                 description: "Server error",
             },
         },
-    },
+    }
 };

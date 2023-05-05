@@ -2,17 +2,17 @@ module.exports = {
     components: {
       schemas: {
         id: {
-          type: "string",
+          type: "integer",
           description: "An id of an object",
-          example: "1",
+          example: 1,
         },
         Category: {
           type: "object",
           properties: {
             id: {
-              type: "string",
+              type: "integer",
               description: "Category identification number",
-              example: "1",
+              example: 1,
             },
             name: {
               type: "string",
@@ -24,16 +24,22 @@ module.exports = {
               description: "Category's description",
               example: "category with komps"
             },
-            goods: []
+            /*goods:{
+              type: "object",
+              description: "category goods",
+              example: {
+                  $ref: "#/definition/schemas/Good"
+              }
+            }*/
           },
         },
         Good: {
           type: "object",
           properties: {
             id: {
-              type: "string",
+              type: "integer",
               description: "Good identification number",
-              example: "3",
+              example: 3,
             },
             name: {
               type: "string",
@@ -41,7 +47,7 @@ module.exports = {
               example: "komp1",
             },
             price:{
-              type: 'number',
+              type: 'decimal',
               description: "Good's price",
               example: 500
             },
@@ -50,7 +56,6 @@ module.exports = {
               description: "Category's description",
               example: "nicec comp"
             },
-
           },
         },
       },

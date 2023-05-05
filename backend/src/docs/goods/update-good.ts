@@ -1,6 +1,6 @@
 module.exports = {
     put: {
-        tags: ["Goods CRUD operations"],
+        tags: ["Good CRUD operations"],
         description: "Update good",
         operationId: "updateGood",
         parameters: [
