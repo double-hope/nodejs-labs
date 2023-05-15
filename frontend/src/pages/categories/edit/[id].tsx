@@ -11,7 +11,7 @@ const EditCategoryPage = () => {
     return (
         <DefaultLayout>
             <AuthLayout allowedRoles={[Roles.ADMIN, Roles.EDITOR]}>
-                {typeof id !== 'undefined' && <EditCategory id={Array.isArray(id) ? id[0].toString() : id} />}
+                {typeof id !== 'undefined' && <EditCategory id={Array.isArray(id) ? +id[0] : +id} />}
             </AuthLayout>
         </DefaultLayout>
     )

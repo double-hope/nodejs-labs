@@ -6,7 +6,7 @@ class Goods {
     constructor() {}
 
     public async _getAllGoods(req: Request, res: Response) {
-       await res.json(client.good.findMany());
+        await res.json(client.good.findMany());
     }
     
     public async _getGood(req: Request, res: Response) {

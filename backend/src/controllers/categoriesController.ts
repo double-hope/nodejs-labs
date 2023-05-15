@@ -23,6 +23,8 @@ class Category {
             name: req.body.name,
             description: req.body.description
         }
+        console.log(newCategory);
+        
 
         if(!newCategory.name)
             return res.status(400).json({'message': 'Name, price and description are required'});

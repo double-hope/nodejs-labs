@@ -32,7 +32,7 @@ app.use('/refresh', refresh);
 app.use('/logout', logout);
 app.use('/profile', profile);
 
-app.use(verifyJWT);
+// app.use(verifyJWT);
 app.use('/goods', goods);
 app.use('/categories', categories);
 

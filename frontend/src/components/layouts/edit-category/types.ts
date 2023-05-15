@@ -1,3 +1,3 @@
 export type EditCategoryProps = {
-    id: string;
+    id: number;
 }

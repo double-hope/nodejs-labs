@@ -14,7 +14,7 @@ const GoodsPage: NextPage = () => {
         <DefaultLayout>
             {
                 data
-                ? <GoodsItem goods={data.goods} />
+                ? <GoodsItem goods={data} />
                 : <Loader />
             }
             

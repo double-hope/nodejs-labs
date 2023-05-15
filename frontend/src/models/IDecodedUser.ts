@@ -1,7 +1,7 @@
 import { Roles } from "@/common";
 
 export interface UserInfo {
-    id: string;
+    id: number;
     email: string;
     roles: Roles[];
 }

@@ -1,3 +1,3 @@
 export type ProfileProps = {
-    id: string;
+    id: number;
 }

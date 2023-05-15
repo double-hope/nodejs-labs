@@ -5,7 +5,7 @@ export const profileAPI = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3030'}),
     endpoints: (build) => ({
         userProfile: build.mutation({
-            query: (body: {id: string, auth: string}) => ({
+            query: (body: {id: number, auth: string}) => ({
                 url: '/profile',
                 method: 'POST',
                 body,

@@ -9,8 +9,7 @@ class Profile {
 
     async _getProfile(req: Request, res: Response) {
         const { id, auth } = req.body;
-
-        const foundUser = await client.user.findFirst({where:{id}});
+        const foundUser = await client.user.findFirst({where:{id: +id}});
         if(!foundUser) return res.sendStatus(404);
 
         if(auth) {

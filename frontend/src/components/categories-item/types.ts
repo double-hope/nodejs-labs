@@ -4,5 +4,5 @@ export type CategoriesItemProps = {
     name: string;
     description: string;
     goods: Good[] | [] | undefined;
-    id: string;
+    id: number;
 }

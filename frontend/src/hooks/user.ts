@@ -11,7 +11,7 @@ const useGetUser = async () => {
     const [getProfile, { data, isSuccess }] = profileAPI.useUserProfileMutation();
     
     const getUser = async () => {
-        await getProfile({id: getCookie('userId') ?? '', auth: getCookie('auth') ?? ''});
+        await getProfile({id: Number(getCookie('userId')) ?? '', auth: getCookie('auth') ?? ''});
     }
 
     useEffect(() => {

@@ -1,7 +1,7 @@
 import {type Good} from './IGood';
 
 export interface Category {
-    id: string;
+    id: number;
     name: string;
     description: string;
     goods?: Good[] | [];

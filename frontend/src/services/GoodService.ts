@@ -7,7 +7,7 @@ export const goodAPI = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3030'}),
     tagTypes: ['Good'],
     endpoints: (build) => ({
-        fetchAllGoods: build.query<Goods, string>({
+        fetchAllGoods: build.query<Good[], string>({
             query: (accessToken: string) => ({
                 url: '/goods',
                 headers: {
