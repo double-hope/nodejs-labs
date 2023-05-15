@@ -59,8 +59,9 @@ class Goods {
             data: newGood,
         })
         
-        await redisClient.setEx('goods', 3600, JSON.stringify(await client.good.findMany()));
-        await res.status(201).json(await client.good.findMany());
+        const goods = await client.good.findMany();
+        await redisClient.setEx('goods', 3600, JSON.stringify(goods));
+        res.status(201).json(goods);
     }
 
     public async _updateGood(req: Request, res: Response) {
@@ -100,8 +101,9 @@ class Goods {
             })
         }
 
-        await redisClient.setEx('goods', 3600, JSON.stringify(await client.good.findMany()));
-        await res.json(await client.good.findMany());
+        const goods = await client.good.findMany();
+        await redisClient.setEx('goods', 3600, JSON.stringify(goods));
+        res.json(goods);
     }
 
     public async _deleteGood(req: Request, res: Response) {
@@ -116,8 +118,9 @@ class Goods {
             }
         })
 
-        await redisClient.setEx('goods', 3600, JSON.stringify(await client.good.findMany()));
-        res.json(await client.good.findMany());
+        const goods = await client.good.findMany();
+        await redisClient.setEx('goods', 3600, JSON.stringify(goods));
+        res.json(goods);
     }
 }
 
