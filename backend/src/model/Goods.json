@@ -3,7 +3,8 @@
         "id": "1",
         "name": "komp1",
         "price": 500,
-        "description": "nicec komp"
+        "description": "nicec komp",
+        "categoryID": "1"
     },
     {
         "id": "2",

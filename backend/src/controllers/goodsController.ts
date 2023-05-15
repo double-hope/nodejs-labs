@@ -1,24 +1,16 @@
 import { Request, Response } from 'express';
-import { GoodsApiDto, GoodsDto } from '../dto';
-import goods from '../model/Goods.json';
-import { randomUUID } from 'crypto';
+import {client} from '..';
 
 class Goods {
-    private data: GoodsApiDto;
 
-    constructor() {
-        this.data  = {
-            goods,
-            setGoods: (data: GoodsDto[]) => { this.data.goods = data }
-        }
-    }
+    constructor() {}
 
-    public _getAllGoods(req: Request, res: Response) {
-        res.json(this.data);
+    public async _getAllGoods(req: Request, res: Response) {
+       await res.json(client.good.findMany());
     }
     
-    public _getGood(req: Request, res: Response) {
-        const good = this.data.goods.find(good => good.id === req.params.id);
+    public async _getGood(req: Request, res: Response) {
+        const good = await client.good.findUnique({where: {id:+req.params.id}});
         
         if(!good)
             return res.status(404).json({'message': `ID ${req.params.id} was not found`});
@@ -26,9 +18,8 @@ class Goods {
         res.json(good);
     }
 
-    public _createNewGood(req: Request, res: Response) {        
+    public async _createNewGood(req: Request, res: Response) {
         const newGood = {
-            id: randomUUID(),
             name: req.body.name,
             price: req.body.price,
             description: req.body.description
@@ -37,37 +28,67 @@ class Goods {
         if(!newGood.name || !newGood.price || !newGood.description)
             return res.status(400).json({'message': 'Name, price and description are required'});
 
-        this.data.setGoods([...this.data.goods, newGood]);
+        await client.good.create({
+            data:
+            newGood
+        })
         
-        res.status(201).json(this.data.goods);
+        await res.status(201).json(client.good.findMany());
     }
 
-    public _updateGood(req: Request, res: Response) {
-        const good = this.data.goods.find(good => good.id === req.body.id);
+    public async _updateGood(req: Request, res: Response) {
+        const good = await client.good.findUnique({where: {id:+req.body.id}})
 
         if(!good)
             return res.status(404).json({'message': `ID ${req.body.id} was not found`});
         
-        if(req.body.name) good.name = req.body.name;
-        if(req.body.price) good.price = req.body.price;
-        if(req.body.description) good.description = req.body.description;
+        if(req.body.name) {
+            await client.good.update({
+                where:{
+                    id:+req.body.id,
+                },
+                data:{
+                    name:req.body.name,
+                }
+            })
+        }
+        if(req.body.price) {
+            await client.good.update({
+                where:{
+                    id:+req.body.id,
+                },
+                data:{
+                    price:+req.body.price,
+                }
+            })
+        }
+        if(req.body.description){
+            await client.good.update({
+                where:{
+                    id:+req.body.id,
+                },
+                data:{
+                    description:req.body.description,
+                }
+            })
+        }
 
-        const filteredData = this.data.goods.filter(good => good.id !== req.body.id);
-        this.data.setGoods([...filteredData, good]);
-
-        res.json(this.data.goods);
+        await res.json(client.good.findMany());
     }
 
-    public _deleteGood(req: Request, res: Response) {
-        const good = this.data.goods.find(good => good.id === req.body.id);
+    public async _deleteGood(req: Request, res: Response) {
+        const good = client.good.findUnique({where:{id:+req.body.id}});
         
         if(!good)
             return res.status(404).json({'message': `ID ${req.body.id} was not found`});
-        
-        const filteredData = this.data.goods.filter(good => good.id !== req.body.id);
-        this.data.setGoods([...filteredData]);
 
-        res.json(this.data.goods);
+        const deleteData = await client.good.delete({
+            where:{
+                id:+req.body.id,
+            }
+        })
+
+        res.json(client.good.findMany());
     }
 }
 

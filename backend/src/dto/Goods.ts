@@ -1,6 +1,7 @@
 export interface GoodsDto {
-    id : string;
+    id : number;
     name : string;
     price : number;
     description : string;
+    categoryID: number;
 }

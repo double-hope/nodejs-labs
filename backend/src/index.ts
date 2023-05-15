@@ -9,10 +9,12 @@ import { corsOptions } from './config';
 import cookieParser from 'cookie-parser';
 import swaggerUi from 'swagger-ui-express';
 import docs from './docs';
+import {PrismaClient} from '@prisma/client';
 
 dotenv.config();
 
 const app: Express = express();
+const client = new PrismaClient();
 const port = process.env.PORT || 3001;
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(docs));
@@ -41,3 +43,5 @@ app.listen(port, () => {
   
   console.log(`[server]: Docs available at http://localhost:${port}/docs`);
 });
+
+export{client};
