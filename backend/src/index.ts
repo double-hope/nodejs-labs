@@ -10,12 +10,19 @@ import cookieParser from 'cookie-parser';
 import swaggerUi from 'swagger-ui-express';
 import docs from './docs';
 import {PrismaClient} from '@prisma/client';
+import {createClient} from 'redis';
+
+const redisClient = createClient({
+  legacyMode:true
+});
+redisClient.connect().catch(console.error);
 
 dotenv.config();
 
 const app: Express = express();
 const client = new PrismaClient();
 const port = process.env.PORT || 3001;
+
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(docs));
 app.use(credentials);
@@ -44,4 +51,4 @@ app.listen(port, () => {
   console.log(`[server]: Docs available at http://localhost:${port}/docs`);
 });
 
-export{client};
+export{client, redisClient};

@@ -31,7 +31,7 @@ class Profile {
                 { expiresIn: '1d' }
             );
 
-            const otherUser = await client.user.update({
+            await client.user.update({
                 where:{
                     id:foundUser.id
                 },

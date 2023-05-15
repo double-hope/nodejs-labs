@@ -1,12 +1,18 @@
 import { Request, Response } from 'express';
 import {client} from '..';
+import {redisClient} from "..";
+
 
 class Goods {
+
 
     constructor() {}
 
     public async _getAllGoods(req: Request, res: Response) {
-        await res.json(client.good.findMany());
+        const goods = await redisClient.get('foo');
+        console.log(goods);
+        await res.json(await client.good.findMany());
+        await redisClient.setEx('goods', 3600, JSON.stringify(await client.good.findMany()));
     }
     
     public async _getGood(req: Request, res: Response) {
@@ -33,7 +39,7 @@ class Goods {
             newGood
         })
         
-        await res.status(201).json(client.good.findMany());
+        await res.status(201).json(await client.good.findMany());
     }
 
     public async _updateGood(req: Request, res: Response) {
@@ -73,22 +79,22 @@ class Goods {
             })
         }
 
-        await res.json(client.good.findMany());
+        await res.json(await client.good.findMany());
     }
 
     public async _deleteGood(req: Request, res: Response) {
-        const good = client.good.findUnique({where:{id:+req.body.id}});
+        const good = await client.good.findUnique({where:{id:+req.body.id}});
         
         if(!good)
             return res.status(404).json({'message': `ID ${req.body.id} was not found`});
 
-        const deleteData = await client.good.delete({
+        await client.good.delete({
             where:{
                 id:+req.body.id,
             }
         })
 
-        res.json(client.good.findMany());
+        res.json(await client.good.findMany());
     }
 }
 

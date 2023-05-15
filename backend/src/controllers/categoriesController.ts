@@ -23,7 +23,6 @@ class Category {
             name: req.body.name,
             description: req.body.description
         }
-        console.log(newCategory);
         
 
         if(!newCategory.name)
@@ -73,7 +72,7 @@ class Category {
         if(!category)
             return res.status(404).json({'message': `ID ${req.body.id} was not found`});
 
-        const deleteData = await client.category.delete({
+        await client.category.delete({
             where:{
                 id:+req.body.id
             }

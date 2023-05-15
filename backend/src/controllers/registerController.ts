@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import { randomUUID } from 'crypto';
-import path from 'path';
 import { ROLES_LIST } from '../config';
 import { client } from '..';
 
