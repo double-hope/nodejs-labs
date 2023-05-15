@@ -1,5 +1,5 @@
 import { Roles } from '@/common';
-import { Good, Goods } from '@/models';
+import { Good } from '@/models';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 export const goodAPI = createApi({

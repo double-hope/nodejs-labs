@@ -1,5 +1,5 @@
 import { Roles } from '@/common';
-import { Categories, Category, CreateCategory, UpdateCategory } from '@/models';
+import { Category, CreateCategory, UpdateCategory } from '@/models';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 export const categoryAPI = createApi({
