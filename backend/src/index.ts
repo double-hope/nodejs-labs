@@ -12,10 +12,7 @@ import docs from './docs';
 import {PrismaClient} from '@prisma/client';
 import {createClient} from 'redis';
 
-const redisClient = createClient({
-  legacyMode:true
-});
-redisClient.connect().catch(console.error);
+const redisClient = createClient();
 
 dotenv.config();
 
@@ -45,7 +42,8 @@ app.use('/categories', categories);
 
 app.use(errorHandler);
 
-app.listen(port, () => {
+app.listen(port, async () => {
+  await redisClient.connect();
   console.log(`[server]: Server is running at http://localhost:${port}`);
   
   console.log(`[server]: Docs available at http://localhost:${port}/docs`);

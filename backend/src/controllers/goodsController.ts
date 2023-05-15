@@ -1,22 +1,43 @@
 import { Request, Response } from 'express';
 import {client} from '..';
 import {redisClient} from "..";
-
+import { GoodsDto } from '../dto';
+import { Good } from '@prisma/client';
 
 class Goods {
-
 
     constructor() {}
 
     public async _getAllGoods(req: Request, res: Response) {
-        const goods = await redisClient.get('foo');
-        console.log(goods);
-        await res.json(await client.good.findMany());
-        await redisClient.setEx('goods', 3600, JSON.stringify(await client.good.findMany()));
+        const data = await redisClient
+                            .get('goods')
+                            .catch((err) => console.log(err));
+
+        if(!data) {
+            const goods = await client.good.findMany();
+            await redisClient.setEx('goods', 3600, JSON.stringify(goods));
+            await res.json(goods);
+        }
+        else 
+            await res.json(JSON.parse(data));
     }
     
-    public async _getGood(req: Request, res: Response) {
-        const good = await client.good.findUnique({where: {id:+req.params.id}});
+    public async _getGood(req: Request, res: Response) { 
+        const data = await redisClient
+                            .get('goods')
+                            .catch((err) => console.log(err));
+
+        if(!data) {
+            var good = await client.good.findUnique({
+                where: {
+                    id: +req.params.id,
+                }
+            });
+        }
+        else {
+            const goods: Good[] = JSON.parse(data);
+            var good = goods.find((good) => good.id === +req.params.id) ?? null;
+        }
         
         if(!good)
             return res.status(404).json({'message': `ID ${req.params.id} was not found`});
@@ -35,10 +56,10 @@ class Goods {
             return res.status(400).json({'message': 'Name, price and description are required'});
 
         await client.good.create({
-            data:
-            newGood
+            data: newGood,
         })
         
+        await redisClient.setEx('goods', 3600, JSON.stringify(await client.good.findMany()));
         await res.status(201).json(await client.good.findMany());
     }
 
@@ -51,34 +72,35 @@ class Goods {
         if(req.body.name) {
             await client.good.update({
                 where:{
-                    id:+req.body.id,
+                    id: +req.body.id,
                 },
                 data:{
-                    name:req.body.name,
+                    name: req.body.name,
                 }
             })
         }
         if(req.body.price) {
             await client.good.update({
                 where:{
-                    id:+req.body.id,
+                    id: +req.body.id,
                 },
                 data:{
-                    price:+req.body.price,
+                    price: +req.body.price,
                 }
             })
         }
         if(req.body.description){
             await client.good.update({
                 where:{
-                    id:+req.body.id,
+                    id: +req.body.id,
                 },
                 data:{
-                    description:req.body.description,
+                    description: req.body.description,
                 }
             })
         }
 
+        await redisClient.setEx('goods', 3600, JSON.stringify(await client.good.findMany()));
         await res.json(await client.good.findMany());
     }
 
@@ -89,11 +111,12 @@ class Goods {
             return res.status(404).json({'message': `ID ${req.body.id} was not found`});
 
         await client.good.delete({
-            where:{
-                id:+req.body.id,
+            where: {
+                id: +req.body.id,
             }
         })
 
+        await redisClient.setEx('goods', 3600, JSON.stringify(await client.good.findMany()));
         res.json(await client.good.findMany());
     }
 }
