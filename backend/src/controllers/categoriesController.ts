@@ -1,16 +1,44 @@
 import { Request, Response } from 'express';
 import {client} from '..';
+import {redisClient} from "..";
+import { Category } from "@prisma/client";
 
-class Category {
+class Categories {
 
     constructor() {}
 
     public async _getAllCategories(req: Request, res: Response) {
-        res.json(await client.category.findMany());
+        const data = await redisClient
+            .get('categories')
+            .catch((err)=>console.log(err));
+
+        if(!data){
+            const categories = await client.category.findMany();
+            await redisClient.setEx('categories', 3600, JSON.stringify(categories));
+            res.json(categories);
+        }
+        else await res.json(redisClient.get('categories'));
+
     }
     
     public async _getCategory(req: Request, res: Response) {
-        const category = await client.category.findUnique({where:{id:+req.params.id}});
+
+        const data = await redisClient
+            .get('category')
+            .catch((err)=>console.log(err));
+
+        if(!data) {
+            var category = await client.category.findUnique({
+                where: {
+                    id: +req.params.id,
+                }
+            });
+        }
+        else {
+            const categories: Category[] = JSON.parse(data);
+            var category = categories.find((category) => category.id === +req.params.id) ?? null;
+        }
+
         
         if(!category)
             return res.status(404).json({'message': `ID ${req.params.id} was not found`});
@@ -32,8 +60,10 @@ class Category {
             data:
             newCategory
         })
-        
-        res.status(201).json(await client.category.findMany());
+
+        const categories = await client.category.findMany();
+        await redisClient.setEx('categories', 3600, JSON.stringify(categories));
+        res.status(201).json(categories);
     }
 
     public async _updateCategory(req: Request, res: Response) {
@@ -63,7 +93,9 @@ class Category {
             })
         }
 
-        res.json(await client.category.findMany());
+        const categories = await client.category.findMany();
+        await redisClient.setEx('categories', 3600, JSON.stringify(categories));
+        res.json(categories);
     }
 
     public async _deleteCategory(req: Request, res: Response) {
@@ -78,8 +110,10 @@ class Category {
             }
         })
 
-        res.json(await client.category.findMany());
+        const categories = await client.category.findMany();
+        await redisClient.setEx('categories', 3600, JSON.stringify(categories));
+        res.json(categories);
     }
 }
 
-export { Category };
+export { Categories };

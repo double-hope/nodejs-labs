@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { Category } from '../../controllers';
+import { Categories } from '../../controllers';
 import { ROLES_LIST } from '../../config';
 import { verifyRoles } from '../../middlewares';
 
 const router = Router();
-const goodsController = new Category();
+const goodsController = new Categories();
 
 router.route('/')
     .get(goodsController._getAllCategories.bind(goodsController))
