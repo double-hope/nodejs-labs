@@ -13,11 +13,11 @@ class Categories {
             .catch((err)=>console.log(err));
 
         if(!data){
-            const categories = await client.category.findMany();
+            const categories = await client.category.findMany();            
             await redisClient.setEx('categories', 3600, JSON.stringify(categories));
             res.json(categories);
         }
-        else await res.json(redisClient.get('categories'));
+        else res.json(JSON.parse(data));
 
     }
     
@@ -57,8 +57,7 @@ class Categories {
             return res.status(400).json({'message': 'Name, price and description are required'});
 
         await client.category.create({
-            data:
-            newCategory
+            data: newCategory
         })
 
         const categories = await client.category.findMany();
